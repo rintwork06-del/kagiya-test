@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import { SHOP_NAME } from "./lib/shopInfo";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -13,7 +14,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "〇〇鍵屋（仮）｜検証用ページ",
+  title: `${SHOP_NAME}｜検証用ページ`,
   description: "技術検証用の仮ページです。",
 };
 
