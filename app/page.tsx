@@ -1,4 +1,5 @@
 import ContactForm from "./components/ContactForm";
+import { SHOP_NAME } from "./lib/shopInfo";
 
 // 【検証用の仮ページ】
 // 鍵屋オーナーからの実際の情報はまだ確定していないため、掲載内容はすべてダミー。
@@ -15,7 +16,7 @@ export default function Home() {
       <main className="flex w-full max-w-2xl flex-1 flex-col items-center gap-16 px-6 py-20">
         <header className="flex flex-col items-center gap-2 text-center">
           <h1 className="text-3xl font-bold tracking-tight text-zinc-900 dark:text-zinc-50">
-            〇〇鍵屋（仮）
+            {SHOP_NAME}
           </h1>
           <p className="text-zinc-600 dark:text-zinc-400">
             鍵のトラブル、鍵の交換・修理はお任せください
