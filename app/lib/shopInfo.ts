@@ -26,3 +26,6 @@ export const SHOP_ADDRESS =
 // 資格情報は「もし存在するなら」の任意項目。未設定時は空文字にし、
 // 各パターン側で空なら表示しない扱いにする。
 export const QUALIFICATIONS = process.env.NEXT_PUBLIC_QUALIFICATIONS || "";
+
+// 電話番号のtel:リンク用（数字と+以外を取り除く）。ダミー値でもリンクとして機能する。
+export const SHOP_PHONE_TEL_HREF = `tel:${SHOP_PHONE.replace(/[^0-9+]/g, "")}`;

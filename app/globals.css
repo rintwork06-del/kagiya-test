@@ -22,5 +22,19 @@
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  /* OS標準の日本語ゴシック（HP分析/調査結果.md：Webフォントは使わず標準搭載で
+     速度と可読性を両立する方針）。 */
+  font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans",
+    "Hiragino Kaku Gothic ProN", "Yu Gothic", "Meiryo", sans-serif;
+}
+
+/* パターンC（老舗）の見出し用。明朝で「構えの良さ」を出す。これもOS標準のみ。 */
+.font-mincho {
+  font-family: "Hiragino Mincho ProN", "Yu Mincho", "MS PMincho", serif;
+}
+
+/* パターンAの「扉を開けて問い合わせへ」CTAなど、ページ内リンクの移動を
+   なめらかにする。JS不要でCSSだけで完結する演出（静的サイトと相性が良い）。 */
+html {
+  scroll-behavior: smooth;
 }
