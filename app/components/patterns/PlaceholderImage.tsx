@@ -30,7 +30,7 @@ export default function PlaceholderImage({
       />
       <div className="relative z-10 flex items-center gap-2 rounded-full bg-white/85 px-4 py-2 shadow-sm backdrop-blur-sm">
         <CameraIcon className="h-4 w-4 opacity-70" />
-        <span className="text-xs font-medium opacity-80">
+        <span className="t-note font-medium opacity-80">
           {label}（写真差し替え予定）
         </span>
       </div>

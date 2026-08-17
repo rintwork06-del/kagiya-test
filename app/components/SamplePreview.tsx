@@ -45,7 +45,7 @@ export default function SamplePreview() {
               type="button"
               onClick={() => setActive(p.id)}
               aria-pressed={active === p.id}
-              className={`flex flex-1 flex-col items-center gap-0.5 rounded-xl border px-3 py-2.5 text-sm transition sm:flex-none sm:px-5 ${
+              className={`flex flex-1 flex-col items-center gap-0.5 rounded-xl border px-3 py-2.5 t-body transition sm:flex-none sm:px-5 ${
                 active === p.id
                   ? "border-zinc-900 bg-zinc-900 text-white shadow-sm dark:border-zinc-100 dark:bg-zinc-100 dark:text-zinc-900"
                   : "border-zinc-200 bg-white text-zinc-600 hover:border-zinc-400 dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-300"
@@ -59,7 +59,7 @@ export default function SamplePreview() {
                 />
                 {p.label}
               </span>
-              <span className="hidden text-[11px] opacity-70 sm:block">
+              <span className="hidden t-note opacity-70 sm:block">
                 {p.description}
               </span>
             </button>

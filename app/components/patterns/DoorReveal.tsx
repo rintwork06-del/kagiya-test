@@ -81,8 +81,8 @@ export default function DoorReveal({
         {/* 表札プレート */}
         <span className="relative z-10 flex flex-col items-center gap-1 rounded-md border border-[#c9a24d]/60 bg-[#2e2014]/70 px-5 py-3 backdrop-blur-[1px]">
           <span className="text-[#e8c877]">{icon}</span>
-          <span className="text-base font-bold tracking-wide">{label}</span>
-          <span className="text-[11px] text-[#f3e3c6]/70">{hint}</span>
+          <span className="t-body font-bold tracking-wide">{label}</span>
+          <span className="t-note text-[#f3e3c6]/70">{hint}</span>
         </span>
       </button>
     </div>

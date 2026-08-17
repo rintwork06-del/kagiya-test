@@ -33,6 +33,53 @@ body {
   font-family: "Hiragino Mincho ProN", "Yu Mincho", "MS PMincho", serif;
 }
 
+/* ------------------------------------------------------------------
+   文字サイズは4段階だけを使う（2026-08-17、兄の助言「文字の大きさが
+   バラバラだから4種類くらいに絞った方がいい」を反映）。
+   改修前は10種類（text-xs / sm / base / lg / xl / 2xl / 3xl / 4xl / 5xl /
+   [11px]）が混在していた。
+
+   4段階に絞ると強弱が付けにくくなるが、そこはサイズではなく
+   「太さ（font-weight）」「色の濃さ」「余白」で付ける方針にした。
+   サイズを増やすより情報の階層が整って見えるため。
+
+   サンプルページ（app/components/patterns/ と SamplePreview.tsx）では
+   素のTailwindの text-* を使わず、必ずこの4つを使う。守れているかの確認：
+     grep -rE "text-(xs|sm|base|lg|xl|2xl|3xl|4xl|5xl)\b" \
+       app/components/patterns app/components/SamplePreview.tsx
+   なお app/page.tsx と app/components/ContactForm.tsx は2026-08-07の技術検証
+   （フォーム送信→GAS→メール転送の疎通確認）用のページで、デザイン確定後に
+   作り直す前提のため、この4段階ルールの対象外にしている。
+   ------------------------------------------------------------------ */
+
+/* ①最大：各パターンのh1（屋号・キャッチコピー）だけに使う。
+   スマホで溢れないようclampで幅に追従させるが、段階としては1つ扱い。 */
+.t-display {
+  font-size: clamp(1.875rem, 5.5vw, 2.5rem);
+  line-height: 1.3;
+  letter-spacing: 0.01em;
+}
+
+/* ②見出し：セクション見出し、電話番号、料金の金額、実績の数字。
+   「目に留めたい大きさ」はすべてこれに統一する。 */
+.t-heading {
+  font-size: 1.5rem;
+  line-height: 1.45;
+}
+
+/* ③本文：説明文、リスト項目、フォームのラベル、店舗情報の値。 */
+.t-body {
+  font-size: 1rem;
+  line-height: 1.75;
+}
+
+/* ④注記：ダミー表示の但し書き、英字ラベル（SERVICE / PRICE など）、
+   キャプション、補足。 */
+.t-note {
+  font-size: 0.75rem;
+  line-height: 1.6;
+}
+
 /* パターンAの「扉を開けて問い合わせへ」CTAなど、ページ内リンクの移動を
    なめらかにする。JS不要でCSSだけで完結する演出（静的サイトと相性が良い）。 */
 html {
