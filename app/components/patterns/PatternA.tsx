@@ -8,6 +8,9 @@
 // ヒーローの2カラム化、比較表のカード化など。
 // 扉演出はパターンBに寄せ、Aは「開けて相談」ボタンの軽い傾きのみ
 // （スクロールすれば普通にフォームへ辿り着ける状態を維持）。
+// 2026-08-18：参考サイト（HP分析/参考サイト_沖縄カギの窓口.md）の構成を踏襲し、
+// 3つのお約束（Aは軽めのチップ帯）・FAQ・追従電話ボタン・サービスカテゴリへの
+// 写真を追加。「不安解消→サービス→根拠→信頼→手順→FAQ→申込」の順を意識。
 import {
   SHOP_NAME,
   OWNER_NAME,
@@ -21,11 +24,15 @@ import {
   SERVICE_INQUIRY_NOTE,
   COMPARISON_ROWS,
   FLOW_STEPS,
+  PROMISES,
 } from "../../lib/dummyContent";
 import ContactPreview from "./ContactPreview";
 import ShopIllustration from "./ShopIllustration";
 import SitePhoto from "./SitePhoto";
+import Faq from "./Faq";
 import heroWork from "../../../public/images/hero-work.jpg";
+import workDoor from "../../../public/images/work-door.jpg";
+import workKey from "../../../public/images/work-key.jpg";
 import {
   PhoneIcon,
   ShieldIcon,
@@ -37,9 +44,26 @@ import {
 
 const NAVY = "#0d2b4e";
 
+// カテゴリ見出しに添える仮写真（2026-08-18合意：3カテゴリに1枚ずつ。
+// いつでも差し替え可能）。家→作業風景、車→鍵穴マクロ、金庫→作業台。
+const CATEGORY_PHOTOS = {
+  house: heroWork,
+  car: workDoor,
+  safe: workKey,
+} as const;
+
 export default function PatternA() {
   return (
-    <div className="flex w-full flex-col bg-slate-50 text-slate-800">
+    <div className="relative flex w-full flex-col bg-slate-50 pb-2 text-slate-800">
+      {/* 追従の電話ボタン（2026-08-18、導線増強。Cの全幅バーとは形を変えて
+          右下のピル型に。ドアCTAはページ内スクロール、こちらは即発信と役割を分ける） */}
+      <a
+        href={SHOP_PHONE_TEL_HREF}
+        className="fixed bottom-4 right-4 z-30 flex items-center gap-2 rounded-full bg-orange-500 px-5 py-3 font-bold text-white shadow-lg shadow-orange-500/40 transition hover:bg-orange-600"
+      >
+        <PhoneIcon className="h-5 w-5" />
+        <span className="t-body">{SHOP_PHONE}</span>
+      </a>
       {/* ヘッダー帯（電話表示①） */}
       <div className="w-full border-b border-slate-200 bg-white">
         <div className="mx-auto flex w-full max-w-5xl flex-col items-center justify-between gap-2 px-6 py-4 sm:flex-row">
@@ -117,6 +141,24 @@ export default function PatternA() {
             className="h-64 w-full rounded-xl md:h-80"
             priority
           />
+        </div>
+      </section>
+
+      {/* 3つのお約束（Aは軽めのチップ帯。詳しい流れは下の「ご利用の流れ」が
+          担うため、ここでは並べて見せるだけに留める） */}
+      <section className="w-full" style={{ backgroundColor: NAVY }}>
+        <div className="mx-auto grid w-full max-w-5xl gap-2 px-6 py-5 sm:grid-cols-3">
+          {PROMISES.map((p, i) => (
+            <p
+              key={p.title}
+              className="flex items-center gap-2.5 text-white/90"
+            >
+              <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-orange-500 t-note font-bold text-white">
+                {i + 1}
+              </span>
+              <span className="t-body font-medium">{p.title}</span>
+            </p>
+          ))}
         </div>
       </section>
 
@@ -219,6 +261,17 @@ export default function PatternA() {
               </tbody>
             </table>
           </div>
+          {/* 節目のCTA（2026-08-18、導線増強） */}
+          <p className="text-center t-body text-slate-600">
+            気になる点は、
+            <a
+              href={SHOP_PHONE_TEL_HREF}
+              className="font-bold text-sky-700 underline underline-offset-4"
+            >
+              お電話
+            </a>
+            でその場でお答えします
+          </p>
         </div>
       </section>
 
@@ -243,6 +296,12 @@ export default function PatternA() {
                 key={cat.id}
                 className="flex flex-col gap-4 rounded-xl border border-slate-200 bg-slate-50 p-6"
               >
+                {/* 仮写真（2026-08-18。差し替え前提） */}
+                <SitePhoto
+                  src={CATEGORY_PHOTOS[cat.id]}
+                  alt={`${cat.title}の作業イメージ`}
+                  className="h-32 w-full rounded-lg"
+                />
                 <div className="flex items-center gap-3">
                   <span
                     className="flex h-12 w-12 items-center justify-center rounded-lg text-white shadow-sm"
@@ -292,6 +351,12 @@ export default function PatternA() {
                 key={cat.id}
                 className="flex flex-col gap-3 rounded-xl border border-slate-200 bg-slate-50 p-6"
               >
+                {/* 仮写真（2026-08-18。差し替え前提） */}
+                <SitePhoto
+                  src={CATEGORY_PHOTOS[cat.id]}
+                  alt={`${cat.title}の作業イメージ`}
+                  className="h-24 w-full rounded-lg"
+                />
                 <div className="flex items-center gap-3">
                   <span className="flex h-10 w-10 items-center justify-center rounded-lg bg-white text-sky-700 shadow-sm">
                     <ServiceIcon name={cat.icon} className="h-5 w-5" />
@@ -417,6 +482,21 @@ export default function PatternA() {
               ※外観はイメージイラストです
             </p>
           </div>
+        </div>
+      </section>
+
+      {/* よくあるご質問（申込前の不安を潰す。フォームの直前に置く） */}
+      <section className="w-full border-t border-slate-200 bg-white">
+        <div className="mx-auto flex w-full max-w-3xl flex-col gap-6 px-6 py-16">
+          <div className="flex flex-col items-center gap-2 text-center">
+            <p className="t-note font-bold tracking-[0.2em] text-sky-700">
+              FAQ
+            </p>
+            <h2 className="t-heading font-bold tracking-tight text-slate-900">
+              よくあるご質問
+            </h2>
+          </div>
+          <Faq theme="a" />
         </div>
       </section>
 

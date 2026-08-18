@@ -17,7 +17,10 @@ import {
   SERVICE_CATEGORIES,
   SERVICE_INQUIRY_NOTE,
   SERVICE_AREA_NOTE,
+  PROMISES,
+  FLOW_STEPS,
 } from "../../lib/dummyContent";
+import Faq from "./Faq";
 import ContactPreview from "./ContactPreview";
 import PlaceholderImage from "./PlaceholderImage";
 import ShopIllustration from "./ShopIllustration";
@@ -146,6 +149,36 @@ export default function PatternC() {
         </div>
       </section>
 
+      {/* 3つのお約束（2026-08-18、参考サイトの踏襲要素。Cは老舗の口上らしく
+          「一・二・三」の和風の番号で、明朝の縦気味の構えに） */}
+      <section className="w-full px-6 pt-14">
+        <div className="mx-auto flex w-full max-w-2xl flex-col gap-4">
+          <h2 className="text-center font-mincho t-heading font-semibold tracking-widest text-stone-900">
+            当店のお約束
+          </h2>
+          <div className="flex flex-col divide-y divide-stone-200 rounded-lg border border-stone-200 bg-white shadow-sm">
+            {PROMISES.map((p, i) => (
+              <div key={p.title} className="flex items-start gap-4 px-6 py-5">
+                <span
+                  className="font-mincho t-heading font-semibold leading-none"
+                  style={{ color: KINCHA }}
+                >
+                  {["一", "二", "三"][i]}
+                </span>
+                <div className="flex flex-col gap-1">
+                  <p className="font-mincho t-body font-semibold tracking-wider text-stone-900">
+                    {p.title}
+                  </p>
+                  <p className="t-note leading-relaxed text-stone-500">
+                    {p.detail}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* 対応エリア地図 */}
       <section className="w-full px-6 py-14">
         <div className="mx-auto flex w-full max-w-3xl flex-col gap-4">
@@ -221,6 +254,33 @@ export default function PatternC() {
         </div>
       </section>
 
+      {/* ご利用の流れ（2026-08-18、Aから展開。Cは沿革と同じ縦の年表風で） */}
+      <section className="w-full px-6 py-14">
+        <div className="mx-auto flex w-full max-w-2xl flex-col gap-8">
+          <h2 className="text-center font-mincho t-heading font-semibold tracking-widest text-stone-900">
+            ご依頼の流れ
+          </h2>
+          <ol className="mx-auto flex w-full max-w-md flex-col gap-7 border-l border-stone-300 pl-8">
+            {FLOW_STEPS.map((step, i) => (
+              <li key={step.title} className="relative">
+                <span
+                  className="absolute -left-[45px] top-0 flex h-7 w-7 items-center justify-center rounded-full bg-white t-note font-bold ring-1 ring-stone-300"
+                  style={{ color: KINCHA }}
+                >
+                  {i + 1}
+                </span>
+                <p className="font-mincho t-body font-semibold tracking-wider text-stone-900">
+                  {step.title}
+                </p>
+                <p className="mt-1 t-note leading-relaxed text-stone-500">
+                  {step.detail}
+                </p>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </section>
+
       {/* 沿革 */}
       <section className="w-full bg-white px-6 py-14">
         <div className="mx-auto flex w-full max-w-2xl flex-col gap-8">
@@ -284,6 +344,16 @@ export default function PatternC() {
               </>
             )}
           </dl>
+        </div>
+      </section>
+
+      {/* よくあるご質問（申込前の不安を潰す。フォームの直前に置く） */}
+      <section className="w-full bg-white px-6 py-14">
+        <div className="mx-auto flex w-full max-w-2xl flex-col gap-4">
+          <h2 className="text-center font-mincho t-heading font-semibold tracking-widest text-stone-900">
+            よくあるご質問
+          </h2>
+          <Faq theme="c" />
         </div>
       </section>
 

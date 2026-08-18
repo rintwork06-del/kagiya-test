@@ -19,12 +19,15 @@ import {
   TESTIMONIALS,
   WORK_EXAMPLES,
   OWNER_INTRO,
+  PROMISES,
+  FLOW_STEPS,
 } from "../../lib/dummyContent";
 import ContactPreview from "./ContactPreview";
-import PlaceholderImage from "./PlaceholderImage";
 import ShopIllustration from "./ShopIllustration";
 import SitePhoto from "./SitePhoto";
 import DoorReveal from "./DoorReveal";
+import Faq from "./Faq";
+import heroWork from "../../../public/images/hero-work.jpg";
 import workDoor from "../../../public/images/work-door.jpg";
 import workKey from "../../../public/images/work-key.jpg";
 import {
@@ -47,12 +50,31 @@ const WORK_PHOTOS = {
   keyCut: workKey,
 } as const;
 
+// カテゴリ見出しに添える仮写真（2026-08-18合意：3カテゴリに1枚ずつ）。
+const CATEGORY_PHOTOS = {
+  house: heroWork,
+  car: workDoor,
+  safe: workKey,
+} as const;
+
 export default function PatternB() {
   return (
     <div
-      className="flex w-full flex-col text-emerald-950"
+      className="relative flex w-full flex-col text-emerald-950"
       style={{ backgroundColor: IVORY }}
     >
+      {/* 追従の電話ボタン（2026-08-18、導線増強。右下のピル型） */}
+      <a
+        href={SHOP_PHONE_TEL_HREF}
+        className="fixed bottom-4 right-4 z-30 flex items-center gap-2 rounded-full px-5 py-3 font-bold text-white shadow-lg transition hover:brightness-110"
+        style={{
+          backgroundColor: GREEN,
+          boxShadow: "0 10px 24px -8px rgba(31,111,84,0.6)",
+        }}
+      >
+        <PhoneIcon className="h-5 w-5" />
+        <span className="t-body">{SHOP_PHONE}</span>
+      </a>
       {/* ヘッダー帯（電話表示①） */}
       <div className="w-full border-b border-emerald-900/10">
         <div className="mx-auto flex w-full max-w-5xl flex-col items-center justify-between gap-2 px-6 py-4 sm:flex-row">
@@ -112,6 +134,40 @@ export default function PatternB() {
               女性のお客様おひとりでも安心してご相談ください
             </li>
           </ul>
+        </div>
+      </section>
+
+      {/* 3つのお約束（2026-08-18、参考サイトの踏襲要素。Bは信頼を厚めに
+          見せるパターンなので、アイコン＋説明文つきのカードで置く） */}
+      <section className="w-full">
+        <div className="mx-auto flex w-full max-w-5xl flex-col gap-5 px-6 pb-14">
+          <div className="flex flex-col items-center gap-2 text-center">
+            <p className="t-note font-bold tracking-[0.2em] text-amber-700">
+              PROMISE
+            </p>
+            <h2 className="t-heading font-bold tracking-tight text-emerald-950">
+              3つのお約束
+            </h2>
+          </div>
+          <div className="grid gap-4 sm:grid-cols-3">
+            {PROMISES.map((p, i) => (
+              <div
+                key={p.title}
+                className="flex flex-col items-center gap-2.5 rounded-3xl border border-emerald-900/10 bg-white px-5 py-7 text-center shadow-sm"
+              >
+                <span
+                  className="flex h-10 w-10 items-center justify-center rounded-full t-body font-bold text-white"
+                  style={{ backgroundColor: GREEN }}
+                >
+                  {i + 1}
+                </span>
+                <p className="t-body font-bold text-emerald-950">{p.title}</p>
+                <p className="t-note leading-relaxed text-emerald-950/60">
+                  {p.detail}
+                </p>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -234,10 +290,14 @@ export default function PatternB() {
               <h3 className="font-bold text-emerald-900">
                 代表者・資格について
               </h3>
-              <PlaceholderImage
-                label="代表者の写真"
-                className="h-24 w-24 self-center rounded-full bg-emerald-50 text-emerald-700"
-              />
+              {/* 顔写真は載せない（2026-08-18、オーナーの意向を兄経由で確認）。
+                  頭文字のアイコンで代替する。 */}
+              <div
+                className="flex h-20 w-20 self-center items-center justify-center rounded-full t-heading font-bold text-white ring-4 ring-white"
+                style={{ backgroundColor: GREEN }}
+              >
+                {OWNER_NAME.charAt(0)}
+              </div>
               <p className="text-center t-body font-bold text-emerald-950">
                 {OWNER_NAME}
               </p>
@@ -251,6 +311,17 @@ export default function PatternB() {
               )}
             </DoorReveal>
           </div>
+          {/* 節目のCTA（2026-08-18、導線増強） */}
+          <p className="text-center t-body text-emerald-950/60">
+            もっと聞きたいことがあれば、
+            <a
+              href={SHOP_PHONE_TEL_HREF}
+              className="font-bold text-emerald-800 underline underline-offset-4"
+            >
+              お電話
+            </a>
+            でどうぞ
+          </p>
         </div>
       </section>
 
@@ -275,6 +346,12 @@ export default function PatternB() {
                 key={cat.id}
                 className="flex flex-col gap-3 rounded-3xl border border-emerald-900/10 bg-[#fdfbf6] p-6"
               >
+                {/* 仮写真（2026-08-18。差し替え前提） */}
+                <SitePhoto
+                  src={CATEGORY_PHOTOS[cat.id]}
+                  alt={`${cat.title}の作業イメージ`}
+                  className="h-28 w-full rounded-2xl"
+                />
                 <div className="flex items-center gap-3">
                   <span
                     className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full text-white"
@@ -324,6 +401,41 @@ export default function PatternB() {
         </div>
       </section>
 
+      {/* ご利用の流れ（2026-08-18、Aから展開。Bは丸みのあるカードで） */}
+      <section className="w-full">
+        <div className="mx-auto flex w-full max-w-5xl flex-col gap-6 px-6 py-14">
+          <div className="flex flex-col items-center gap-2 text-center">
+            <p className="t-note font-bold tracking-[0.2em] text-amber-700">
+              FLOW
+            </p>
+            <h2 className="t-heading font-bold tracking-tight text-emerald-950">
+              ご依頼からお支払いまで
+            </h2>
+          </div>
+          <ol className="grid gap-4 sm:grid-cols-4">
+            {FLOW_STEPS.map((step, i) => (
+              <li
+                key={step.title}
+                className="relative flex flex-col gap-2 rounded-3xl border border-emerald-900/10 bg-white p-5 pt-8 shadow-sm"
+              >
+                <span
+                  className="absolute -top-4 left-5 flex h-8 w-8 items-center justify-center rounded-full t-body font-bold text-white ring-4 ring-[#faf6ef]"
+                  style={{ backgroundColor: GREEN }}
+                >
+                  {i + 1}
+                </span>
+                <p className="t-body font-bold text-emerald-950">
+                  {step.title}
+                </p>
+                <p className="t-note leading-relaxed text-emerald-950/60">
+                  {step.detail}
+                </p>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </section>
+
       {/* 店舗情報 */}
       <section className="w-full">
         <div className="mx-auto flex w-full max-w-2xl flex-col gap-5 px-6 py-14">
@@ -363,6 +475,21 @@ export default function PatternB() {
               </>
             )}
           </dl>
+        </div>
+      </section>
+
+      {/* よくあるご質問（申込前の不安を潰す。フォームの直前に置く） */}
+      <section className="w-full bg-white">
+        <div className="mx-auto flex w-full max-w-3xl flex-col gap-5 px-6 py-14">
+          <div className="flex flex-col items-center gap-2 text-center">
+            <p className="t-note font-bold tracking-[0.2em] text-amber-700">
+              FAQ
+            </p>
+            <h2 className="t-heading font-bold tracking-tight text-emerald-950">
+              よくあるご質問
+            </h2>
+          </div>
+          <Faq theme="b" />
         </div>
       </section>
 
