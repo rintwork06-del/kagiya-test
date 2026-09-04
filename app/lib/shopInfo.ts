@@ -12,16 +12,16 @@
 // （各パターンコンポーネント側を参照）。
 
 export const SHOP_NAME =
-  process.env.NEXT_PUBLIC_SHOP_NAME || "〇〇鍵屋（仮）";
+  process.env.NEXT_PUBLIC_SHOP_NAME || "〇〇鍵屋";
 
 export const OWNER_NAME =
-  process.env.NEXT_PUBLIC_OWNER_NAME || "佐藤太郎（仮名）";
+  process.env.NEXT_PUBLIC_OWNER_NAME || "佐藤太郎";
 
 export const SHOP_PHONE =
-  process.env.NEXT_PUBLIC_SHOP_PHONE || "000-0000-0000（ダミー）";
+  process.env.NEXT_PUBLIC_SHOP_PHONE || "000-0000-0000";
 
 export const SHOP_ADDRESS =
-  process.env.NEXT_PUBLIC_SHOP_ADDRESS || "〇〇県〇〇市〇〇 1-2-3（ダミー）";
+  process.env.NEXT_PUBLIC_SHOP_ADDRESS || "〇〇県〇〇市〇〇 1-2-3";
 
 // 資格情報は「もし存在するなら」の任意項目。未設定時は空文字にし、
 // 各パターン側で空なら表示しない扱いにする。
