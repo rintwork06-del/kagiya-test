@@ -54,16 +54,32 @@ const CATEGORY_PHOTOS = {
 
 export default function PatternA() {
   return (
-    <div className="relative flex w-full flex-col bg-slate-50 pb-2 text-slate-800">
-      {/* 追従の電話ボタン（2026-08-18、導線増強。Cの全幅バーとは形を変えて
-          右下のピル型に。ドアCTAはページ内スクロール、こちらは即発信と役割を分ける） */}
-      <a
-        href={SHOP_PHONE_TEL_HREF}
-        className="fixed bottom-4 right-4 z-30 flex items-center gap-2 rounded-full bg-orange-500 px-5 py-3 font-bold text-white shadow-lg shadow-orange-500/40 transition hover:bg-orange-600"
+    <div className="relative flex w-full flex-col bg-slate-50 pb-24 text-slate-800">
+      {/* 画面下に常時表示の電話バー（2026-09-04、案①採用の決定に伴いCから移植。
+          クライアントが評価したのはCの「全幅で常に出ている」形なので、構造と文言は
+          Cのまま、配色だけAのネイビー×オレンジに合わせた。
+          以前ここにあった右下のピル型は役割が重複するため廃止） */}
+      <div
+        className="fixed inset-x-0 bottom-0 z-30 border-t border-white/15"
+        style={{ backgroundColor: NAVY }}
       >
-        <PhoneIcon className="h-5 w-5" />
-        <span className="t-body">{SHOP_PHONE}</span>
-      </a>
+        <a
+          href={SHOP_PHONE_TEL_HREF}
+          className="mx-auto flex w-full max-w-5xl items-center justify-center gap-3 px-6 py-4 text-white"
+        >
+          <span className="flex h-9 w-9 items-center justify-center rounded-full bg-orange-500">
+            <PhoneIcon className="h-5 w-5" />
+          </span>
+          <span className="flex flex-col leading-tight sm:flex-row sm:items-baseline sm:gap-3">
+            <span className="t-note text-white/70">
+              鍵のトラブルはお電話で（9:00〜18:00）
+            </span>
+            <span className="t-heading font-bold tracking-wide">
+              {SHOP_PHONE}
+            </span>
+          </span>
+        </a>
+      </div>
       {/* ヘッダー帯（電話表示①） */}
       <div className="w-full border-b border-slate-200 bg-white">
         <div className="mx-auto flex w-full max-w-5xl flex-col items-center justify-between gap-2 px-6 py-4 sm:flex-row">

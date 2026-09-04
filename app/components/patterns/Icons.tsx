@@ -48,6 +48,7 @@ export function ShieldIcon(props: IconProps) {
   );
 }
 
+// 現在は未使用。営業時間の明示で使う想定のため残している（2026-09-04）。
 export function ClockIcon(props: IconProps) {
   return (
     <svg {...base(props)}>
@@ -73,55 +74,13 @@ export function CrossIcon(props: IconProps) {
   );
 }
 
+// 現在は未使用。タスク「対応場所・対応エリアの明示」で使う想定のため残している
+// （エリア範囲はオーナー確認待ち。2026-09-04）。
 export function MapPinIcon(props: IconProps) {
   return (
     <svg {...base(props)}>
       <path d="M12 21s-6.5-5.5-6.5-10.5a6.5 6.5 0 0 1 13 0C18.5 15.5 12 21 12 21Z" />
       <circle cx="12" cy="10.5" r="2.5" />
-    </svg>
-  );
-}
-
-export function WalletIcon(props: IconProps) {
-  return (
-    <svg {...base(props)}>
-      <rect x="3" y="6" width="18" height="13" rx="2" />
-      <path d="M3 10h18M16 14.5h2" />
-    </svg>
-  );
-}
-
-export function SpeechIcon(props: IconProps) {
-  return (
-    <svg {...base(props)}>
-      <path d="M21 12a8 8 0 0 1-8 8H4l2-3.2A8 8 0 1 1 21 12Z" />
-      <path d="M8.5 11h.01M12 11h.01M15.5 11h.01" />
-    </svg>
-  );
-}
-
-export function BadgeIcon(props: IconProps) {
-  return (
-    <svg {...base(props)}>
-      <circle cx="12" cy="9" r="5.5" />
-      <path d="m8.8 13.5-1.3 7 4.5-2.5 4.5 2.5-1.3-7" />
-    </svg>
-  );
-}
-
-export function ArrowDownIcon(props: IconProps) {
-  return (
-    <svg {...base(props)}>
-      <path d="M12 4v14m0 0 6-6m-6 6-6-6" />
-    </svg>
-  );
-}
-
-export function CameraIcon(props: IconProps) {
-  return (
-    <svg {...base(props)}>
-      <path d="M4 8h3l2-2.5h6L17 8h3a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1Z" />
-      <circle cx="12" cy="13" r="3.5" />
     </svg>
   );
 }
