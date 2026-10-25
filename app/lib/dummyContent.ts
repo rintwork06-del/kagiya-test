@@ -27,11 +27,16 @@ export const SERVICE_CATEGORIES = [
     lead: "ご自宅・アパートの鍵のトラブル",
     items: [
       { icon: "keyhole", name: "鍵開け（開かない・失くした）", price: "8,000円〜" },
-      { icon: "keys", name: "合鍵・スペアキー作成", price: "3,000円〜" },
+      { icon: "keys", name: "合鍵作成（他の作業とあわせて）", price: "3,000円〜" },
       { icon: "swap", name: "鍵交換（違う鍵にしたい）", price: "12,000円〜" },
       { icon: "key", name: "鍵穴から鍵を作る", price: "12,000円〜" },
+      { icon: "house", name: "競売物件の鍵の対応", price: "お見積り" },
     ],
-    caution: null,
+    // 2026-10-25、オーナーの回答を反映（合鍵のみ不可・鍵穴からの作成は物による・
+    // 交換の取り扱いメーカー・競売物件対応可）。金額は未回答のためダミーのまま
+    note: "鍵交換はMIWA・GOAL・SHOWA・WEST・KABA・YKK・LIXILなどに対応しています",
+    caution:
+      "合鍵のみのご依頼はお受けしていません。鍵穴から鍵を作る作業は、鍵によっては対応できない場合があります",
   },
   {
     id: "car",
@@ -42,6 +47,7 @@ export const SERVICE_CATEGORIES = [
       { icon: "car", name: "鍵開け", price: "8,000円〜" },
       { icon: "carKey", name: "鍵作成（紛失時）", price: "15,000円〜" },
     ],
+    note: null,
     caution:
       "車種・年式によっては対応できない場合があります。まずはお電話でご確認ください",
   },
@@ -53,6 +59,7 @@ export const SERVICE_CATEGORIES = [
     items: [
       { icon: "dial", name: "開錠・暗証番号の解読", price: "10,000円〜" },
     ],
+    note: null,
     caution: "業務用・大型の金庫は対応しておりません",
   },
 ] as const;
@@ -76,7 +83,7 @@ export const COMPARISON_ROWS = [
   },
   {
     item: "見積もり",
-    ours: "電話でおおよその金額を回答",
+    ours: "お電話で状況を伺ってご案内",
     others: "現地に来ないと分からないことが多い",
   },
   {
@@ -91,10 +98,14 @@ export const COMPARISON_ROWS = [
   },
 ] as const;
 
-// 対応エリアは範囲未確定のため仮表示（確認事項スプレッドシート・共通シート参照）。
-// 現在は未使用。タスク「対応場所・対応エリアの明示」で使う想定のため残している
-// （2026-09-04、案①採用に伴う整理時）。
-export const SERVICE_AREA_NOTE = "対応エリアは確認中です（表示イメージのダミー）";
+// 対応エリア（2026-10-25、オーナーの回答「東毛 中毛 西毛(一部不可)」を反映）。
+// 店舗情報欄に表示している。
+export const SERVICE_AREA_NOTE = "東毛・中毛・西毛（西毛は一部地域を除く）";
+
+// 電話番号の近くに添える一文（2026-10-24、オーナーの要望。個人で営業していて
+// 電話に出られないことがあるため。文言は短い版に決定：2026-10-25、りん）。
+// 電話番号を表示する全箇所に入れる。
+export const CALLBACK_NOTE = "出られない場合は、折り返しお電話します";
 
 // 3つのお約束（2026-08-18、参考サイト「沖縄カギの窓口」の踏襲要素）。
 // 参考サイトは「作業前見積・無理な契約なし・1年保証」だが、保証の有無は
@@ -148,7 +159,7 @@ export const FAQ_ITEMS = [
 export const FLOW_STEPS = [
   {
     title: "お電話・フォームでご相談",
-    detail: "状況をお聞きし、おおよその料金目安をその場でお伝えします",
+    detail: "状況をお聞きし、対応できるかどうかや作業内容をご案内します",
   },
   {
     title: "現地でお見積り",

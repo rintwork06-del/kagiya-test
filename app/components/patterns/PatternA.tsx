@@ -22,6 +22,8 @@ import {
 import {
   SERVICE_CATEGORIES,
   SERVICE_INQUIRY_NOTE,
+  SERVICE_AREA_NOTE,
+  CALLBACK_NOTE,
   COMPARISON_ROWS,
   FLOW_STEPS,
   PROMISES,
@@ -54,7 +56,7 @@ const CATEGORY_PHOTOS = {
 
 export default function PatternA() {
   return (
-    <div className="relative flex w-full flex-col bg-slate-50 pb-24 text-slate-800">
+    <div className="relative flex w-full flex-col bg-slate-50 pb-32 text-slate-800">
       {/* 画面下に常時表示の電話バー（2026-09-04、案①採用の決定に伴いCから移植。
           クライアントが評価したのはCの「全幅で常に出ている」形なので、構造と文言は
           Cのまま、配色だけAのネイビー×オレンジに合わせた。
@@ -72,11 +74,12 @@ export default function PatternA() {
           </span>
           <span className="flex flex-col leading-tight sm:flex-row sm:items-baseline sm:gap-3">
             <span className="t-note text-white/70">
-              鍵のトラブルはお電話で（9:00〜18:00）
+              鍵のトラブルはお電話で（7:00〜22:00）
             </span>
             <span className="t-heading font-bold tracking-wide">
               {SHOP_PHONE}
             </span>
+            <span className="t-note text-white/70">{CALLBACK_NOTE}</span>
           </span>
         </a>
       </div>
@@ -87,15 +90,18 @@ export default function PatternA() {
             <KeyIcon className="h-5 w-5 text-sky-700" />
             {SHOP_NAME}
           </p>
-          <a
-            href={SHOP_PHONE_TEL_HREF}
-            className="flex items-center gap-2 rounded-lg border border-slate-200 bg-slate-50 px-4 py-2 transition hover:border-sky-600"
-          >
-            <PhoneIcon className="h-4 w-4 text-sky-700" />
-            <span className="t-body font-bold text-slate-900">
-              {SHOP_PHONE}
-            </span>
-          </a>
+          <div className="flex flex-col items-center gap-1 sm:items-end">
+            <a
+              href={SHOP_PHONE_TEL_HREF}
+              className="flex items-center gap-2 rounded-lg border border-slate-200 bg-slate-50 px-4 py-2 transition hover:border-sky-600"
+            >
+              <PhoneIcon className="h-4 w-4 text-sky-700" />
+              <span className="t-body font-bold text-slate-900">
+                {SHOP_PHONE}
+              </span>
+            </a>
+            <p className="t-note text-slate-500">{CALLBACK_NOTE}</p>
+          </div>
         </div>
       </div>
 
@@ -117,7 +123,7 @@ export default function PatternA() {
               作業の前に、はっきりと。
             </h1>
             <p className="t-body leading-relaxed text-white/80">
-              創業15年以上。広告費をかけない分、無理のない価格でご案内します。
+              創業8年、経験15年以上。広告費をかけない分、無理のない価格でご案内します。
               お見積りの前に作業を始めることはありません。
             </p>
             <div className="flex flex-wrap items-center gap-3">
@@ -182,7 +188,7 @@ export default function PatternA() {
       <section className="w-full border-b border-slate-200 bg-white">
         <div className="mx-auto grid w-full max-w-5xl grid-cols-1 divide-y divide-slate-200 px-6 sm:grid-cols-3 sm:divide-x sm:divide-y-0">
           {[
-            { num: "15年以上", label: "地域での営業実績" },
+            { num: "15年以上", label: "鍵の仕事の経験" },
             { num: "月30件〜", label: "ご依頼件数（ダミー数値）" },
             { num: "0円", label: "出張費・お見積り（ダミー）" },
           ].map((s) => (
@@ -351,6 +357,9 @@ export default function PatternA() {
                     </li>
                   ))}
                 </ul>
+                {cat.note && (
+                  <p className="t-note text-slate-500">{cat.note}</p>
+                )}
                 {cat.caution && (
                   <p className="t-note rounded-lg bg-orange-50 px-3 py-2 text-orange-900">
                     {cat.caution}
@@ -417,7 +426,7 @@ export default function PatternA() {
           </div>
 
           <p className="text-center t-note text-slate-400">
-            鍵の種類・状況により変わります。お電話でおおよその金額をお伝えできます
+            鍵の種類・状況により変わります。詳しくはお電話でご案内します
           </p>
         </div>
       </section>
@@ -471,12 +480,21 @@ export default function PatternA() {
               <dt className="text-slate-500">代表者</dt>
               <dd className="font-medium text-slate-900">{OWNER_NAME}</dd>
               <dt className="text-slate-500">電話番号</dt>
-              <dd className="font-medium text-slate-900">{SHOP_PHONE}</dd>
+              <dd className="font-medium text-slate-900">
+                {SHOP_PHONE}
+                <span className="block t-note font-normal text-slate-500">
+                  {CALLBACK_NOTE}
+                </span>
+              </dd>
               <dt className="text-slate-500">住所</dt>
               <dd className="font-medium text-slate-900">{SHOP_ADDRESS}</dd>
               <dt className="text-slate-500">営業時間</dt>
               <dd className="font-medium text-slate-900">
-                9:00〜18:00（年中無休・ダミー）
+                7:00〜22:00（不定休）
+              </dd>
+              <dt className="text-slate-500">対応エリア</dt>
+              <dd className="font-medium text-slate-900">
+                {SERVICE_AREA_NOTE}
               </dd>
               {QUALIFICATIONS && (
                 <>
@@ -536,6 +554,7 @@ export default function PatternA() {
           <PhoneIcon className="h-6 w-6 text-orange-400" />
           {SHOP_PHONE}
         </a>
+        <p className="t-note text-white/80">{CALLBACK_NOTE}</p>
         <p className="t-note text-white/60">
           お電話の際は「ホームページを見た」とお伝えください。
         </p>

@@ -27,7 +27,7 @@ export default function Home() {
           <h2 className="text-xl font-semibold text-zinc-900 dark:text-zinc-50">
             当店について
           </h2>
-          <p>創業15年以上、地域のお客様の鍵のトラブルに対応してまいりました。</p>
+          <p>創業8年、経験15年以上。地域のお客様の鍵のトラブルに対応してまいりました。</p>
           <p>毎月多数のご依頼をいただいております（件数はダミーです）。</p>
         </section>
 
@@ -35,7 +35,7 @@ export default function Home() {
           <h2 className="text-xl font-semibold text-zinc-900 dark:text-zinc-50">
             営業時間
           </h2>
-          <p>9:00〜18:00（年中無休・ダミー）</p>
+          <p>7:00〜22:00（不定休）</p>
         </section>
 
         <section className="flex w-full flex-col items-center gap-4">
