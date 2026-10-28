@@ -18,8 +18,11 @@
 //   一番不信を招くため（HP分析/調査結果.md）。できない可能性を先に書くほうが
 //   問い合わせのハードルは上がらず、信頼は上がると判断した。
 //
-// 金額はオーナー未回答。2026-10-28、ダミー金額を表示から外した（price: null は非表示）。
-// 回答が来たら「〇円〜」の文字列を入れる。
+// 金額は仮（税込・最低料金）。2026-10-28夜、兄の「料金表を入れて、金額は仮で反映して」を受けて、
+// 地域の鍵屋の料金表（前橋・栃木・埼玉・東京の4店）と相場サイトの要旨から決めた
+// （活動/Web制作/鍵屋の依頼/リサーチ/料金相場_2026-10-28.md）。
+// 鍵の種類で値段が大きく変わる作業は、普通の鍵／ディンプルキーなどで行を分けた。
+// オーナーの回答が来たら差し替える。price: null の行は金額を出さない。
 export const SERVICE_CATEGORIES = [
   {
     id: "house",
@@ -27,11 +30,14 @@ export const SERVICE_CATEGORIES = [
     title: "家の鍵",
     lead: "ご自宅・アパートの鍵のトラブル",
     items: [
-      { icon: "keyhole", name: "鍵開け（開かない・失くした）", price: null },
-      { icon: "keys", name: "合鍵作成（他の作業とあわせて）", price: null },
-      { icon: "swap", name: "鍵交換（違う鍵にしたい）", price: null },
-      { icon: "key", name: "鍵穴から鍵を作る", price: null },
-      { icon: "house", name: "競売物件の鍵の対応", price: null },
+      { icon: "keyhole", name: "鍵開け（普通の鍵）", price: "8,800円〜" },
+      { icon: "keyhole", name: "鍵開け（ディンプルキー）", price: "16,500円〜" },
+      { icon: "keys", name: "合鍵作成（普通の鍵・1本）", price: "1,100円〜" },
+      { icon: "keys", name: "合鍵作成（ディンプルキー・1本）", price: "3,300円〜" },
+      { icon: "swap", name: "鍵交換（普通の鍵・部品代込み）", price: "16,500円〜" },
+      { icon: "swap", name: "鍵交換（ディンプルキー・部品代込み）", price: "27,500円〜" },
+      { icon: "key", name: "鍵穴から鍵を作る", price: "16,500円〜" },
+      { icon: "house", name: "競売物件の鍵の対応", price: "お見積り" },
     ],
     // 2026-10-25、オーナーの回答を反映（合鍵のみ不可・鍵穴からの作成は物による・
     // 交換の取り扱いメーカー・競売物件対応可）。金額は未回答のためダミーのまま
@@ -45,8 +51,10 @@ export const SERVICE_CATEGORIES = [
     title: "車の鍵",
     lead: "車内に置き忘れた・失くしてしまった",
     items: [
-      { icon: "car", name: "鍵開け", price: null },
-      { icon: "carKey", name: "鍵作成（紛失時）", price: null },
+      { icon: "car", name: "鍵開け（国産車）", price: "8,800円〜" },
+      { icon: "car", name: "鍵開け（外国車）", price: "16,500円〜" },
+      { icon: "carKey", name: "鍵作成（紛失時・イモビライザーなし）", price: "16,500円〜" },
+      { icon: "carKey", name: "鍵作成（紛失時・イモビライザー・スマートキー）", price: "33,000円〜" },
     ],
     note: null,
     caution:
@@ -58,7 +66,8 @@ export const SERVICE_CATEGORIES = [
     title: "金庫",
     lead: "家庭用の金庫のみ対応しています",
     items: [
-      { icon: "dial", name: "開錠・暗証番号の解読", price: null },
+      { icon: "dial", name: "開錠（鍵穴）", price: "8,800円〜" },
+      { icon: "dial", name: "開錠（ダイヤル・暗証番号）", price: "16,500円〜" },
     ],
     note: null,
     caution: "業務用・大型の金庫は対応しておりません",
@@ -71,6 +80,12 @@ export type ServiceIconKey =
 
 // 対応サービス欄の締めに置く一文（兄の助言：できない場合もあるので
 // 「まずはお気軽に問い合わせください」と伝えた方がいい）。
+// 料金表の見出しの下に置く一文（2026-10-28、りん。仮の金額でも本番で通用する案内にする。
+// 「◯円〜」だけを大きく出す見せ方は悪徳業者の特徴なので、何で変わるか・いつ総額が分かるかを添える）。
+// 出張費・夜間料金・「断っても費用はかからない」は、オーナー未回答のため書いていない。
+export const PRICE_NOTE =
+  "表示は税込の最低料金の目安です。鍵の種類や状況で変わるため、作業の前に必ず総額をお伝えし、ご了承いただいてから作業します。";
+
 export const SERVICE_INQUIRY_NOTE =
   "上記以外の鍵のお困りごとも、まずはお気軽にお問い合わせください。";
 

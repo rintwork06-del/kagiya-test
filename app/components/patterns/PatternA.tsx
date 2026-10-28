@@ -24,6 +24,7 @@ import {
   SERVICE_INQUIRY_NOTE,
   SERVICE_AREA_NOTE,
   CALLBACK_NOTE,
+  PRICE_NOTE,
   COMPARISON_ROWS,
   FLOW_STEPS,
   PROMISES,
@@ -298,11 +299,12 @@ export default function PatternA() {
         <div className="mx-auto flex w-full max-w-5xl flex-col gap-6 px-6 py-16">
           <div className="flex flex-col items-center gap-2 text-center">
             <p className="t-note font-bold tracking-[0.2em] text-sky-700">
-              SERVICE
+              SERVICE / PRICE
             </p>
             <h2 className="t-heading font-bold tracking-tight text-slate-900">
-              対応サービス
+              対応サービスと料金の目安
             </h2>
+            <p className="t-body text-slate-500">{PRICE_NOTE}</p>
           </div>
           {/* 家・車を大きく、金庫を小さく。カテゴリごとにカードを分ける */}
           <div className="grid gap-5 md:grid-cols-2">
