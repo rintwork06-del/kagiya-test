@@ -6,6 +6,8 @@ import { useState, type FormEvent } from "react";
 // 見た目はGoogleフォームを使わず、独自デザインのHTML/CSS/JSフォームから
 // fetch(..., { mode: "no-cors" }) で Google の formResponse エンドポイントへ直接POSTする方式。
 // 2026-08-07 に単体では動作確認済み。ここでは実際のNext.jsアプリ内への組み込みを検証する。
+// 2026-10-28、トップの仮ページを案①に置き換えたため、今はどこからも使っていない。
+// /samples のフォーム（ContactPreview.tsx）に送信をつなぐときの元として残している。
 const GOOGLE_FORM_ACTION_URL =
   "https://docs.google.com/forms/d/e/1FAIpQLSdXGAtI1-8zPnk51pVHNDwahFd4YA94ZlEY0UOugs2JoBDxLg/formResponse";
 

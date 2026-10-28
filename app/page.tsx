@@ -1,50 +1,14 @@
-import ContactForm from "./components/ContactForm";
-import { SHOP_NAME } from "./lib/shopInfo";
+import PatternA from "./components/patterns/PatternA";
 
-// 【検証用の仮ページ】
-// 鍵屋オーナーからの実際の情報はまだ確定していないため、掲載内容はすべてダミー。
-// 目的は「Next.js + GitHub Pages上で、独自デザインの問い合わせフォームが
-// 実際に動作し、りん・兄の両方にメールが届くか」の技術検証。
+// 【本番トップ】
+// 2026-10-28、兄の「今ある情報だけでもサイトに反映して」を受けて、案①を "/" に昇格した
+// （それまでは技術検証用の仮ページ。/samples と同じページを出す）。
+// 料金・件数などオーナー未回答の項目は、表示から外したまま。
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center bg-zinc-50 font-sans dark:bg-black">
-      <div className="w-full bg-amber-100 px-4 py-2 text-center text-sm text-amber-900 dark:bg-amber-950 dark:text-amber-200">
-        これは技術検証用の仮ページです。掲載内容はすべてダミーです。
-      </div>
-
-      <main className="flex w-full max-w-2xl flex-1 flex-col items-center gap-16 px-6 py-20">
-        <header className="flex flex-col items-center gap-2 text-center">
-          <h1 className="text-3xl font-bold tracking-tight text-zinc-900 dark:text-zinc-50">
-            {SHOP_NAME}
-          </h1>
-          <p className="text-zinc-600 dark:text-zinc-400">
-            鍵のトラブル、鍵の交換・修理はお任せください
-          </p>
-        </header>
-
-        <section className="flex w-full flex-col gap-3 text-zinc-700 dark:text-zinc-300">
-          <h2 className="text-xl font-semibold text-zinc-900 dark:text-zinc-50">
-            当店について
-          </h2>
-          <p>創業8年、経験15年以上。地域のお客様の鍵のトラブルに対応してまいりました。</p>
-          <p>毎月多数のご依頼をいただいております（件数はダミーです）。</p>
-        </section>
-
-        <section className="flex w-full flex-col gap-3 text-zinc-700 dark:text-zinc-300">
-          <h2 className="text-xl font-semibold text-zinc-900 dark:text-zinc-50">
-            営業時間
-          </h2>
-          <p>7:00〜22:00（不定休）</p>
-        </section>
-
-        <section className="flex w-full flex-col items-center gap-4">
-          <h2 className="text-xl font-semibold text-zinc-900 dark:text-zinc-50">
-            お問い合わせ
-          </h2>
-          <ContactForm />
-        </section>
-      </main>
+    <div className="flex flex-1 flex-col items-center bg-zinc-50 font-sans dark:bg-black">
+      <PatternA />
     </div>
   );
 }

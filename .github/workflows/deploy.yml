@@ -29,6 +29,13 @@ jobs:
         run: npm ci
       - name: Build (static export)
         run: npm run build
+        # 店舗情報（屋号・代表者名・電話番号・住所）はGitHub Secretsから渡す。
+        # 値はリポジトリに置かない（ローカルでは.env.localから読む）
+        env:
+          NEXT_PUBLIC_SHOP_NAME: ${{ secrets.NEXT_PUBLIC_SHOP_NAME }}
+          NEXT_PUBLIC_OWNER_NAME: ${{ secrets.NEXT_PUBLIC_OWNER_NAME }}
+          NEXT_PUBLIC_SHOP_PHONE: ${{ secrets.NEXT_PUBLIC_SHOP_PHONE }}
+          NEXT_PUBLIC_SHOP_ADDRESS: ${{ secrets.NEXT_PUBLIC_SHOP_ADDRESS }}
       - name: Setup Pages
         uses: actions/configure-pages@v5
       - name: Upload artifact

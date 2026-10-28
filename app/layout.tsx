@@ -14,8 +14,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: `${SHOP_NAME}｜検証用ページ`,
-  description: "技術検証用の仮ページです。",
+  title: `${SHOP_NAME}｜群馬の家と車の鍵のトラブル`,
+  description:
+    "群馬県の東毛・中毛・西毛（西毛は一部地域を除く）で、家と車の鍵開け・鍵交換・鍵作成に対応しています。作業の前に必ずお見積りをお伝えします。",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
