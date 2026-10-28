@@ -123,7 +123,7 @@ export default function PatternA() {
               作業の前に、はっきりと。
             </h1>
             <p className="t-body leading-relaxed text-white/80">
-              創業8年、経験15年以上。広告費をかけない分、無理のない価格でご案内します。
+              創業8年、経験15年以上。無理のない価格でご案内します。
               お見積りの前に作業を始めることはありません。
             </p>
             <div className="flex flex-wrap items-center gap-3">
@@ -146,10 +146,6 @@ export default function PatternA() {
               <li className="flex items-center gap-1.5">
                 <CheckIcon className="h-3.5 w-3.5 text-orange-400" />
                 作業前に必ずお見積り
-              </li>
-              <li className="flex items-center gap-1.5">
-                <CheckIcon className="h-3.5 w-3.5 text-orange-400" />
-                出張費0円（ダミー）
               </li>
               <li className="flex items-center gap-1.5">
                 <CheckIcon className="h-3.5 w-3.5 text-orange-400" />
@@ -188,9 +184,11 @@ export default function PatternA() {
       <section className="w-full border-b border-slate-200 bg-white">
         <div className="mx-auto grid w-full max-w-5xl grid-cols-1 divide-y divide-slate-200 px-6 sm:grid-cols-3 sm:divide-x sm:divide-y-0">
           {[
+            // 2026-10-28、ダミーだった件数・出張費を外し、回答済みの値に置き換えた
+            // （件数・出張費はシートで確認中。答えが来たら戻してよい）
             { num: "15年以上", label: "鍵の仕事の経験" },
-            { num: "月30件〜", label: "ご依頼件数（ダミー数値）" },
-            { num: "0円", label: "出張費・お見積り（ダミー）" },
+            { num: "創業8年", label: "地域での営業" },
+            { num: "7:00〜22:00", label: "営業時間（不定休）" },
           ].map((s) => (
             <div
               key={s.label}
@@ -217,8 +215,6 @@ export default function PatternA() {
             </h2>
             <p className="t-body text-slate-500">
               仲介サイトを通さない直接のご依頼だから、余計な費用がかかりません
-              <br className="hidden sm:block" />
-              ※内容はダミーです。実際の条件はオーナー確認後に反映します
             </p>
           </div>
           <div className="w-full overflow-x-auto rounded-xl border border-slate-200 bg-white shadow-sm">
@@ -302,14 +298,11 @@ export default function PatternA() {
         <div className="mx-auto flex w-full max-w-5xl flex-col gap-6 px-6 py-16">
           <div className="flex flex-col items-center gap-2 text-center">
             <p className="t-note font-bold tracking-[0.2em] text-sky-700">
-              SERVICE / PRICE
+              SERVICE
             </p>
             <h2 className="t-heading font-bold tracking-tight text-slate-900">
-              対応サービスと料金の目安
+              対応サービス
             </h2>
-            <p className="t-body text-slate-500">
-              ※対応可否・金額はオーナー確認中のダミー表示です
-            </p>
           </div>
           {/* 家・車を大きく、金庫を小さく。カテゴリごとにカードを分ける */}
           <div className="grid gap-5 md:grid-cols-2">
@@ -351,9 +344,11 @@ export default function PatternA() {
                       <span className="t-body flex-1 text-slate-700">
                         {item.name}
                       </span>
-                      <span className="t-body font-bold text-slate-900">
-                        {item.price}
-                      </span>
+                      {item.price && (
+                        <span className="t-body font-bold text-slate-900">
+                          {item.price}
+                        </span>
+                      )}
                     </li>
                   ))}
                 </ul>
@@ -399,9 +394,11 @@ export default function PatternA() {
                     className="flex items-center justify-between border-y border-slate-200 py-3"
                   >
                     <span className="t-body text-slate-700">{item.name}</span>
-                    <span className="t-body font-bold text-slate-900">
-                      {item.price}
-                    </span>
+                    {item.price && (
+                      <span className="t-body font-bold text-slate-900">
+                        {item.price}
+                      </span>
+                    )}
                   </div>
                 ))}
                 {cat.caution && (
