@@ -208,9 +208,6 @@ export default function PatternA() {
       <section className="w-full bg-slate-50">
         <div className="mx-auto flex w-full max-w-5xl flex-col gap-6 px-6 py-16">
           <div className="flex flex-col items-center gap-2 text-center">
-            <p className="t-note font-bold tracking-[0.2em] text-sky-700">
-              COMPARISON
-            </p>
             <h2 className="t-heading font-bold tracking-tight text-slate-900">
               他社と比べてください
             </h2>
@@ -298,9 +295,6 @@ export default function PatternA() {
       <section className="w-full border-y border-slate-200 bg-white">
         <div className="mx-auto flex w-full max-w-5xl flex-col gap-6 px-6 py-16">
           <div className="flex flex-col items-center gap-2 text-center">
-            <p className="t-note font-bold tracking-[0.2em] text-sky-700">
-              SERVICE / PRICE
-            </p>
             <h2 className="t-heading font-bold tracking-tight text-slate-900">
               対応サービスと料金の目安
             </h2>
@@ -434,9 +428,6 @@ export default function PatternA() {
       <section className="w-full bg-slate-50">
         <div className="mx-auto flex w-full max-w-5xl flex-col gap-8 px-6 py-16">
           <div className="flex flex-col items-center gap-2 text-center">
-            <p className="t-note font-bold tracking-[0.2em] text-sky-700">
-              FLOW
-            </p>
             <h2 className="t-heading font-bold tracking-tight text-slate-900">
               ご依頼からお支払いまで
             </h2>
@@ -468,9 +459,6 @@ export default function PatternA() {
         <div className="mx-auto grid w-full max-w-5xl gap-8 px-6 py-16 md:grid-cols-2 md:items-start">
           <div className="flex flex-col gap-4">
             <div className="flex flex-col gap-2">
-              <p className="t-note font-bold tracking-[0.2em] text-sky-700">
-                SHOP
-              </p>
               <h2 className="t-heading font-bold tracking-tight text-slate-900">
                 店舗情報
               </h2>
@@ -522,9 +510,6 @@ export default function PatternA() {
       <section className="w-full border-t border-slate-200 bg-white">
         <div className="mx-auto flex w-full max-w-3xl flex-col gap-6 px-6 py-16">
           <div className="flex flex-col items-center gap-2 text-center">
-            <p className="t-note font-bold tracking-[0.2em] text-sky-700">
-              FAQ
-            </p>
             <h2 className="t-heading font-bold tracking-tight text-slate-900">
               よくあるご質問
             </h2>

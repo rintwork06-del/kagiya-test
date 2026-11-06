@@ -27,7 +27,6 @@ const THEME_STYLES: Record<
     label: string;
     input: string;
     button: string;
-    note: string;
     badge: string;
   }
 > = {
@@ -39,7 +38,6 @@ const THEME_STYLES: Record<
       "rounded-lg border border-slate-300 bg-slate-50 px-3.5 py-2.5 text-slate-900 outline-none transition focus:border-sky-600 focus:bg-white focus:ring-2 focus:ring-sky-600/20",
     button:
       "rounded-lg bg-orange-500 px-6 py-3.5 font-bold text-white shadow-md shadow-orange-500/30 transition hover:bg-orange-600 active:translate-y-px",
-    note: "text-slate-400",
     badge: "bg-sky-50 text-sky-800",
   },
   b: {
@@ -50,7 +48,6 @@ const THEME_STYLES: Record<
       "rounded-xl border border-emerald-900/15 bg-[#faf6ef] px-3.5 py-2.5 text-emerald-950 outline-none transition focus:border-emerald-600 focus:bg-white focus:ring-2 focus:ring-emerald-600/20",
     button:
       "rounded-full bg-emerald-700 px-6 py-3.5 font-bold text-white shadow-md shadow-emerald-700/30 transition hover:bg-emerald-800 active:translate-y-px",
-    note: "text-emerald-900/40",
     badge: "bg-emerald-50 text-emerald-800",
   },
   c: {
@@ -61,7 +58,6 @@ const THEME_STYLES: Record<
       "rounded-md border border-stone-300 bg-stone-50 px-3.5 py-2.5 text-stone-900 outline-none transition focus:border-amber-700 focus:bg-white focus:ring-2 focus:ring-amber-700/20",
     button:
       "rounded-md bg-amber-700 px-6 py-3.5 font-bold text-white shadow-md shadow-amber-700/30 transition hover:bg-amber-800 active:translate-y-px",
-    note: "text-stone-400",
     badge: "bg-amber-50 text-amber-800",
   },
 };
@@ -89,9 +85,6 @@ export default function ContactPreview({
             {" "}
             ／ ご返信・ご対応は営業時間内
           </span>
-        </p>
-        <p className={`t-note mt-2 text-center ${s.note}`}>
-          ※デザイン確認用の見た目のみです。送信機能は組み込んでいません
         </p>
         <div className="mt-6 flex flex-col gap-4">
           {variant === "full" && (
