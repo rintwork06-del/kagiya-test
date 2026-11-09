@@ -1,20 +1,23 @@
 // サイトで使う写真を1か所にまとめたもの（2026-11-09）。
 // 写真を差し替えるときは、public/images/ に画像を置いて、ここの読み込み先を変えるだけでよい。
 //
-// 今はすべて8月に作った仮のAI画像。りんがChatGPTで作り直している最中で、
-// できたものから差し替える（メイン・家の鍵・車の鍵・電話に出る職人・金庫）。
-// 同じ画像を2か所で使っている所がある（兄の指摘「同じ画像の使い回し」）。差し替えで解消する。
+// 2026-11-09、りんがGeminiで作った5枚に差し替えた（同じ男性・同じ紺の作業服でそろえた）。
+// 競売物件の写真も同日に追加した（6枚目）。
+// 最後の電話の帯の背景は、紺を濃く重ねるので、電話の写真を使い回している。
 
-import heroWork from "../../public/images/hero-work.jpg";
-import workDoor from "../../public/images/work-door.jpg";
-import workKey from "../../public/images/work-key.jpg";
+import hero from "../../public/images/hero.jpg"; //       作業服の職人が鍵を持って笑っている（住宅街）
+import house from "../../public/images/house.jpg"; //     玄関ドアの鍵の作業
+import car from "../../public/images/car.jpg"; //         車のドアの鍵の作業
+import phone from "../../public/images/phone.jpg"; //     バンの運転席で電話に出る
+import safe from "../../public/images/safe.jpg"; //       家庭用の金庫の作業
+import auction from "../../public/images/auction.jpg"; // 空き家の玄関で鍵を交換する
 
 export const PHOTOS = {
-  hero: heroWork, // メイン（作業服の職人が鍵を持っている写真に差し替える）
-  house: heroWork, // 家の鍵
-  car: workDoor, // 車の鍵
-  safe: workKey, // 金庫
-  auction: workDoor, // 競売物件
-  phone: workKey, // 職人が直接お電話に出ます
-  contact: heroWork, // 最後の電話の帯の背景
+  hero, // メイン
+  house, // 家の鍵
+  car, // 車の鍵
+  safe, // 金庫
+  auction, // 競売物件
+  phone, // 職人が直接お電話に出ます
+  contact: phone, // 最後の電話の帯の背景
 };
