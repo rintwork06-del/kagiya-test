@@ -1,8 +1,7 @@
 // サイトに写真を出すための共通コンポーネント（2026-08-17）。
 //
-// 現在置いている写真はすべてAI生成の仮画像。実際に手がけた案件の写真ではないため、
-// 右下に「イメージ」バッジを重ねて、実績と誤解されないようにしている
-// （案件概要.md「AI生成画像の扱い」参照）。実写真に差し替えたら badge={null} にする。
+// 置いている写真はAI生成の画像。実際の店舗・作業の写真はもらえないため、今後もAI画像を使う。
+// 以前は右下に「イメージ」の表示を重ねていたが、2026-11-08の兄との話し合いで外すと決めた。
 //
 // next/image を使う理由：GitHub Pagesのプロジェクトページでは basePath
 // （/kagiya-test）が付くため、素の <img src="/images/..."> だと本番でパスが
@@ -16,13 +15,11 @@ export default function SitePhoto({
   src,
   alt,
   className = "",
-  badge = "イメージ",
   priority = false,
 }: {
   src: StaticImageData;
   alt: string;
   className?: string;
-  badge?: string | null;
   priority?: boolean;
 }) {
   return (
@@ -35,11 +32,6 @@ export default function SitePhoto({
         sizes="(max-width: 768px) 100vw, 50vw"
         className="object-cover"
       />
-      {badge && (
-        <span className="t-note absolute bottom-2 right-2 rounded-full bg-black/55 px-2.5 py-1 text-white backdrop-blur-sm">
-          {badge}
-        </span>
-      )}
     </div>
   );
 }

@@ -37,7 +37,6 @@ export const SERVICE_CATEGORIES = [
       { icon: "swap", name: "鍵交換（普通の鍵・部品代込み）", price: "16,500円〜" },
       { icon: "swap", name: "鍵交換（ディンプルキー・部品代込み）", price: "27,500円〜" },
       { icon: "key", name: "鍵穴から鍵を作る", price: "16,500円〜" },
-      { icon: "house", name: "競売物件の鍵の対応", price: "お見積り" },
     ],
     // 2026-10-25、オーナーの回答を反映（合鍵のみ不可・鍵穴からの作成は物による・
     // 交換の取り扱いメーカー・競売物件対応可）。金額は未回答のためダミーのまま
@@ -66,13 +65,23 @@ export const SERVICE_CATEGORIES = [
     title: "金庫",
     lead: "家庭用の金庫のみ対応しています",
     items: [
+      // 2026-11-09、「開錠（ダイヤル・暗証番号）」を外した（記入欄で暗証番号の解読に回答が無いため。りん）
       { icon: "dial", name: "開錠（鍵穴）", price: "8,800円〜" },
-      { icon: "dial", name: "開錠（ダイヤル・暗証番号）", price: "16,500円〜" },
     ],
     note: null,
     caution: "業務用・大型の金庫は対応しておりません",
   },
 ] as const;
+
+// 競売物件への対応（2026-10-25、オーナーの回答「対応可」）。
+// 2026-11-09、家の鍵の一覧から別枠に出した（兄：家の鍵とはジャンルが違う）。
+// 料金比較ページ（/price-options）には出さない。
+export const AUCTION_SERVICE = {
+  title: "競売物件",
+  lead: "競売で取得した物件の鍵のご相談",
+  name: "競売物件の鍵の対応",
+  price: "お見積り",
+} as const;
 
 export type ServiceIconKey =
   | (typeof SERVICE_CATEGORIES)[number]["icon"]

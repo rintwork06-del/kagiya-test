@@ -11,16 +11,18 @@
 // 2026-08-18：参考サイト（HP分析/参考サイト_沖縄カギの窓口.md）の構成を踏襲し、
 // 3つのお約束（Aは軽めのチップ帯）・FAQ・追従電話ボタン・サービスカテゴリへの
 // 写真を追加。「不安解消→サービス→根拠→信頼→手順→FAQ→申込」の順を意識。
+// 2026-11-09：兄との話し合い（11/8）の見た目の修正。電話番号はすべて PhoneLink で
+// 押せるようにし、押したら「ホームページを見た」の案内を出してから発信する形にした。
 import {
   SHOP_NAME,
   OWNER_NAME,
   SHOP_PHONE,
-  SHOP_PHONE_TEL_HREF,
   SHOP_ADDRESS,
   QUALIFICATIONS,
 } from "../../lib/shopInfo";
 import {
   SERVICE_CATEGORIES,
+  AUCTION_SERVICE,
   SERVICE_INQUIRY_NOTE,
   SERVICE_AREA_NOTE,
   CALLBACK_NOTE,
@@ -33,6 +35,7 @@ import ContactPreview from "./ContactPreview";
 import ShopIllustration from "./ShopIllustration";
 import SitePhoto from "./SitePhoto";
 import Faq from "./Faq";
+import { PhoneLink, CallDialog } from "./PhoneLink";
 import heroWork from "../../../public/images/hero-work.jpg";
 import workDoor from "../../../public/images/work-door.jpg";
 import workKey from "../../../public/images/work-key.jpg";
@@ -42,12 +45,16 @@ import {
   ServiceIcon,
   CheckIcon,
   CrossIcon,
-  KeyIcon,
+  MapPinIcon,
 } from "./Icons";
 
 const NAVY = "#0d2b4e";
 
-// カテゴリ見出しに添える仮写真（2026-08-18合意：3カテゴリに1枚ずつ。
+// メインに出す「鍵開け」の金額。⑦の料金表の家の鍵の最初の行（鍵開け）から取る
+// （同じ金額を2か所に書かないため。料金表を直せばメインも変わる）
+const UNLOCK_PRICE = SERVICE_CATEGORIES[0].items[0].price;
+
+// カテゴリ見出しに添える写真（2026-08-18合意：3カテゴリに1枚ずつ。
 // いつでも差し替え可能）。家→作業風景、車→鍵穴マクロ、金庫→作業台。
 const CATEGORY_PHOTOS = {
   house: heroWork,
@@ -57,7 +64,9 @@ const CATEGORY_PHOTOS = {
 
 export default function PatternA() {
   return (
-    <div className="relative flex w-full flex-col bg-slate-50 pb-32 text-slate-800">
+    <div className="relative flex w-full flex-col bg-slate-50 text-slate-800">
+      {/* 電話のボタンを押したときに出す案内の画面（2026-11-09、PhoneLink.tsx） */}
+      <CallDialog />
       {/* 画面下に常時表示の電話バー（2026-09-04、案①採用の決定に伴いCから移植。
           クライアントが評価したのはCの「全幅で常に出ている」形なので、構造と文言は
           Cのまま、配色だけAのネイビー×オレンジに合わせた。
@@ -66,10 +75,7 @@ export default function PatternA() {
         className="fixed inset-x-0 bottom-0 z-30 border-t border-white/15"
         style={{ backgroundColor: NAVY }}
       >
-        <a
-          href={SHOP_PHONE_TEL_HREF}
-          className="mx-auto flex w-full max-w-5xl items-center justify-center gap-3 px-6 py-4 text-white"
-        >
+        <PhoneLink className="mx-auto flex w-full max-w-5xl items-center justify-center gap-3 px-6 py-4 text-white">
           <span className="flex h-9 w-9 items-center justify-center rounded-full bg-orange-500">
             <PhoneIcon className="h-5 w-5" />
           </span>
@@ -82,25 +88,23 @@ export default function PatternA() {
             </span>
             <span className="t-note text-white/70">{CALLBACK_NOTE}</span>
           </span>
-        </a>
+        </PhoneLink>
       </div>
-      {/* ヘッダー帯（電話表示①） */}
+      {/* ヘッダー帯（電話表示①）
+          2026-11-09（兄の指摘）：店名の左の鍵のアイコンを外した。
+          スマホでは電話番号を出さず店名だけにする（画面下の電話バーに常に出ているため） */}
       <div className="w-full border-b border-slate-200 bg-white">
-        <div className="mx-auto flex w-full max-w-5xl flex-col items-center justify-between gap-2 px-6 py-4 sm:flex-row">
-          <p className="flex items-center gap-2 t-heading font-bold tracking-tight text-slate-900">
-            <KeyIcon className="h-5 w-5 text-sky-700" />
+        <div className="mx-auto flex w-full max-w-5xl items-center justify-center gap-2 px-6 py-4 sm:justify-between">
+          <p className="t-heading font-bold tracking-tight text-slate-900">
             {SHOP_NAME}
           </p>
-          <div className="flex flex-col items-center gap-1 sm:items-end">
-            <a
-              href={SHOP_PHONE_TEL_HREF}
-              className="flex items-center gap-2 rounded-lg border border-slate-200 bg-slate-50 px-4 py-2 transition hover:border-sky-600"
-            >
+          <div className="hidden flex-col items-end gap-1 sm:flex">
+            <PhoneLink className="flex items-center gap-2 rounded-lg border border-slate-200 bg-slate-50 px-4 py-2 transition hover:border-sky-600">
               <PhoneIcon className="h-4 w-4 text-sky-700" />
               <span className="t-body font-bold text-slate-900">
                 {SHOP_PHONE}
               </span>
-            </a>
+            </PhoneLink>
             <p className="t-note text-slate-500">{CALLBACK_NOTE}</p>
           </div>
         </div>
@@ -127,20 +131,49 @@ export default function PatternA() {
               創業8年、経験15年以上。無理のない価格でご案内します。
               お見積りの前に作業を始めることはありません。
             </p>
-            <div className="flex flex-wrap items-center gap-3">
+            {/* 対応エリアと料金の目安（2026-11-09）。兄の話（11/8）：お客さんがまず知りたいのは
+                「自分の地域に来てくれるか」と「いくらか」の2つだけなので、開いてすぐ見える所に置く。
+                金額は⑦の料金表と同じ値を使う（仮の金額。りんの判断で出す） */}
+            <div className="flex w-full flex-col gap-3 rounded-xl bg-white p-4 text-slate-800 shadow-lg">
+              <p className="flex items-start gap-2.5">
+                <MapPinIcon className="mt-0.5 h-5 w-5 shrink-0 text-orange-500" />
+                <span className="t-body">
+                  <span className="font-bold text-slate-900">対応エリア：</span>
+                  群馬県 {SERVICE_AREA_NOTE}
+                </span>
+              </p>
+              <p className="flex items-start gap-2.5">
+                <ServiceIcon
+                  name="keyhole"
+                  className="mt-0.5 h-5 w-5 shrink-0 text-orange-500"
+                />
+                <span className="t-body">
+                  <span className="font-bold text-slate-900">料金の目安：</span>
+                  鍵開け <span className="font-bold text-slate-900">{UNLOCK_PRICE}</span>
+                  <span className="block t-note text-slate-500">
+                    作業の前に必ず総額をお伝えします
+                  </span>
+                </span>
+              </p>
               <a
-                href={SHOP_PHONE_TEL_HREF}
-                className="flex items-center gap-2 rounded-lg bg-orange-500 px-6 py-3.5 font-bold text-white shadow-lg shadow-orange-500/30 transition hover:bg-orange-600 active:translate-y-px"
+                href="#price"
+                className="t-body self-start rounded-lg border border-slate-300 px-4 py-2 font-bold text-sky-700 transition hover:border-sky-600 hover:bg-sky-50"
               >
+                料金の詳細はこちら ↓
+              </a>
+            </div>
+            <div className="flex flex-wrap items-center gap-3">
+              <PhoneLink className="flex items-center gap-2 rounded-lg bg-orange-500 px-6 py-3.5 font-bold text-white shadow-lg shadow-orange-500/30 transition hover:bg-orange-600 active:translate-y-px">
                 <PhoneIcon className="h-5 w-5" />
                 今すぐ電話で相談
-              </a>
-              {/* 「扉を開けて相談」：hoverで軽く開く演出だけ残す（JS不要） */}
+              </PhoneLink>
+              {/* 「扉を開けて相談」：hoverで軽く開く演出だけ残す（JS不要）。
+                  2026-11-09、「フォームで相談する」から言い換えた（兄：カタカナが気になる） */}
               <a
-                href="#pattern-a-contact"
+                href="#contact"
                 className="rounded-lg border-2 border-white/40 px-6 py-3 font-bold text-white transition-transform duration-300 [transform-origin:left_center] hover:[transform:perspective(600px)_rotateY(-12deg)] hover:border-white/70"
               >
-                フォームで相談する
+                お問い合わせ
               </a>
             </div>
             <ul className="mt-2 flex flex-wrap gap-x-5 gap-y-2 t-note text-white/75">
@@ -280,19 +313,19 @@ export default function PatternA() {
           {/* 節目のCTA（2026-08-18、導線増強） */}
           <p className="text-center t-body text-slate-600">
             気になる点は、
-            <a
-              href={SHOP_PHONE_TEL_HREF}
-              className="font-bold text-sky-700 underline underline-offset-4"
-            >
+            <PhoneLink className="font-bold text-sky-700 underline underline-offset-4">
               お電話
-            </a>
+            </PhoneLink>
             でその場でお答えします
           </p>
         </div>
       </section>
 
-      {/* 対応サービス・料金 */}
-      <section className="w-full border-y border-slate-200 bg-white">
+      {/* 対応サービス・料金（メインの「料金の詳細はこちら」の飛び先） */}
+      <section
+        id="price"
+        className="w-full scroll-mt-4 border-y border-slate-200 bg-white"
+      >
         <div className="mx-auto flex w-full max-w-5xl flex-col gap-6 px-6 py-16">
           <div className="flex flex-col items-center gap-2 text-center">
             <h2 className="t-heading font-bold tracking-tight text-slate-900">
@@ -307,11 +340,12 @@ export default function PatternA() {
                 key={cat.id}
                 className="flex flex-col gap-4 rounded-xl border border-slate-200 bg-slate-50 p-6"
               >
-                {/* 仮写真（2026-08-18。差し替え前提） */}
+                {/* 写真は縦横比を固定する（2026-11-09。高さだけ決めていたため、
+                    画面の幅によって細長く切り取られていた） */}
                 <SitePhoto
                   src={CATEGORY_PHOTOS[cat.id]}
-                  alt={`${cat.title}の作業イメージ`}
-                  className="h-32 w-full rounded-lg"
+                  alt={`${cat.title}の作業の様子`}
+                  className="aspect-[2/1] w-full rounded-lg"
                 />
                 <div className="flex items-center gap-3">
                   <span
@@ -360,18 +394,18 @@ export default function PatternA() {
             ))}
           </div>
 
-          {/* 金庫＋お気軽に相談を横並びで */}
-          <div className="grid gap-5 md:grid-cols-[1fr_1fr]">
+          {/* 金庫・競売物件・お気軽に相談を横並びで
+              （2026-11-09、競売物件を家の鍵の一覧から別枠に出した。兄の指摘） */}
+          <div className="grid gap-5 md:grid-cols-3">
             {SERVICE_CATEGORIES.filter((c) => c.id === "safe").map((cat) => (
               <div
                 key={cat.id}
                 className="flex flex-col gap-3 rounded-xl border border-slate-200 bg-slate-50 p-6"
               >
-                {/* 仮写真（2026-08-18。差し替え前提） */}
                 <SitePhoto
                   src={CATEGORY_PHOTOS[cat.id]}
-                  alt={`${cat.title}の作業イメージ`}
-                  className="h-24 w-full rounded-lg"
+                  alt={`${cat.title}の作業の様子`}
+                  className="aspect-[2/1] w-full rounded-lg"
                 />
                 <div className="flex items-center gap-3">
                   <span className="flex h-10 w-10 items-center justify-center rounded-lg bg-white text-sky-700 shadow-sm">
@@ -384,19 +418,21 @@ export default function PatternA() {
                     <p className="t-note text-slate-500">{cat.lead}</p>
                   </div>
                 </div>
-                {cat.items.map((item) => (
-                  <div
-                    key={item.name}
-                    className="flex items-center justify-between border-y border-slate-200 py-3"
-                  >
-                    <span className="t-body text-slate-700">{item.name}</span>
-                    {item.price && (
-                      <span className="t-body font-bold text-slate-900">
-                        {item.price}
-                      </span>
-                    )}
-                  </div>
-                ))}
+                <ul className="flex flex-col divide-y divide-slate-200 border-y border-slate-200">
+                  {cat.items.map((item) => (
+                    <li
+                      key={item.name}
+                      className="flex items-center justify-between py-3"
+                    >
+                      <span className="t-body text-slate-700">{item.name}</span>
+                      {item.price && (
+                        <span className="t-body font-bold text-slate-900">
+                          {item.price}
+                        </span>
+                      )}
+                    </li>
+                  ))}
+                </ul>
                 {cat.caution && (
                   <p className="t-note rounded-lg bg-orange-50 px-3 py-2 text-orange-900">
                     {cat.caution}
@@ -404,10 +440,30 @@ export default function PatternA() {
                 )}
               </div>
             ))}
-            <a
-              href={SHOP_PHONE_TEL_HREF}
-              className="flex flex-col items-center justify-center gap-2 rounded-xl border-2 border-dashed border-slate-300 p-6 text-center transition hover:border-sky-400 hover:bg-sky-50/50"
-            >
+            <div className="flex flex-col gap-3 rounded-xl border border-slate-200 bg-slate-50 p-6">
+              <div className="flex items-center gap-3">
+                <span className="flex h-10 w-10 items-center justify-center rounded-lg bg-white text-sky-700 shadow-sm">
+                  <ServiceIcon name="house" className="h-5 w-5" />
+                </span>
+                <div className="flex flex-col">
+                  <p className="t-body font-bold text-slate-900">
+                    {AUCTION_SERVICE.title}
+                  </p>
+                  <p className="t-note text-slate-500">
+                    {AUCTION_SERVICE.lead}
+                  </p>
+                </div>
+              </div>
+              <div className="flex items-center justify-between border-y border-slate-200 py-3">
+                <span className="t-body text-slate-700">
+                  {AUCTION_SERVICE.name}
+                </span>
+                <span className="t-body font-bold text-slate-900">
+                  {AUCTION_SERVICE.price}
+                </span>
+              </div>
+            </div>
+            <PhoneLink className="flex flex-col items-center justify-center gap-2 rounded-xl border-2 border-dashed border-slate-300 p-6 text-center transition hover:border-sky-400 hover:bg-sky-50/50">
               <PhoneIcon className="h-6 w-6 text-sky-700" />
               <p className="t-body font-medium text-slate-700">
                 {SERVICE_INQUIRY_NOTE}
@@ -415,7 +471,7 @@ export default function PatternA() {
               <p className="t-note text-slate-500">
                 対応できるかどうかも、その場でお答えします
               </p>
-            </a>
+            </PhoneLink>
           </div>
 
           <p className="text-center t-note text-slate-400">
@@ -468,7 +524,10 @@ export default function PatternA() {
               <dd className="font-medium text-slate-900">{OWNER_NAME}</dd>
               <dt className="text-slate-500">電話番号</dt>
               <dd className="font-medium text-slate-900">
-                {SHOP_PHONE}
+                {/* 2026-11-09、ここだけ押しても反応しなかったのでリンクにした（兄の指摘） */}
+                <PhoneLink className="text-sky-700 underline underline-offset-4">
+                  {SHOP_PHONE}
+                </PhoneLink>
                 <span className="block t-note font-normal text-slate-500">
                   {CALLBACK_NOTE}
                 </span>
@@ -493,16 +552,11 @@ export default function PatternA() {
               )}
             </dl>
           </div>
-          {/* 外観は写真が出せない可能性があるためイラストで代替（仮） */}
-          <div className="flex flex-col gap-2">
-            <ShopIllustration
-              accent="#f97316"
-              className="h-56 w-full overflow-hidden rounded-xl bg-slate-100 text-slate-600 md:h-64"
-            />
-            <p className="t-note text-center text-slate-400">
-              ※外観はイメージイラストです
-            </p>
-          </div>
+          {/* 外観は写真が出せないためイラストで代替 */}
+          <ShopIllustration
+            accent="#f97316"
+            className="h-56 w-full overflow-hidden rounded-xl bg-slate-100 text-slate-600 md:h-64"
+          />
         </div>
       </section>
 
@@ -519,25 +573,24 @@ export default function PatternA() {
       </section>
 
       {/* 問い合わせフォーム（フル版） */}
-      <div id="pattern-a-contact" className="w-full scroll-mt-20 bg-slate-50">
+      <div id="contact" className="w-full scroll-mt-20 bg-slate-50">
         <ContactPreview theme="a" variant="full" />
       </div>
 
-      {/* フッター（電話表示②） */}
+      {/* フッター（電話表示②）
+          2026-11-09：画面下の電話バーに隠れないよう、下の余白をフッターに持たせた。
+          以前はページ全体の下に余白を付けていたため、フッターの下に白い隙間が見えていた（兄の指摘） */}
       <section
-        className="flex w-full flex-col items-center gap-3 px-6 py-12 text-center text-white"
+        className="flex w-full flex-col items-center gap-3 px-6 pt-12 pb-44 text-center text-white"
         style={{ backgroundColor: NAVY }}
       >
         <p className="t-body font-medium text-white/80">
           お急ぎの場合はお電話ください
         </p>
-        <a
-          href={SHOP_PHONE_TEL_HREF}
-          className="flex items-center gap-2 t-heading font-bold tracking-tight"
-        >
+        <PhoneLink className="flex items-center gap-2 t-heading font-bold tracking-tight">
           <PhoneIcon className="h-6 w-6 text-orange-400" />
           {SHOP_PHONE}
-        </a>
+        </PhoneLink>
         <p className="t-note text-white/80">{CALLBACK_NOTE}</p>
         <p className="t-note text-white/60">
           お電話の際は「ホームページを見た」とお伝えください。
