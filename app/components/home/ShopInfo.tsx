@@ -20,7 +20,7 @@ export default function ShopInfo() {
   return (
     <section id="shop" className="w-full bg-mist">
       <div className="mx-auto flex w-full max-w-3xl flex-col gap-8 px-5 py-16">
-        <SectionTitle label="SHOP" title="店舗情報" />
+        <SectionTitle title="店舗情報" />
         <dl className="grid grid-cols-[6rem_1fr] border-t border-slate-300 bg-white sm:grid-cols-[8rem_1fr]">
           {rows.map((r) => (
             <div key={r.label} className="contents">

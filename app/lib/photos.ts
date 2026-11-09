@@ -18,6 +18,6 @@ export const PHOTOS = {
   car, // 車の鍵
   safe, // 金庫
   auction, // 競売物件
-  phone, // 職人が直接お電話に出ます
+  phone, // 当店について（電話を受ける職人）
   contact: phone, // 最後の電話の帯の背景
 };

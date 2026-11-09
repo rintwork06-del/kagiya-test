@@ -11,7 +11,6 @@ export default function Area() {
     <section id="area" className="w-full bg-white">
       <div className="mx-auto flex w-full max-w-5xl flex-col gap-8 px-5 py-16">
         <SectionTitle
-          label="SERVICE AREA"
           title="群馬県の東毛・中毛・西毛に出張します"
           lead="伺えるかどうかは、お電話でその場でお答えします。"
         />
@@ -19,7 +18,7 @@ export default function Area() {
           {AREA_REGIONS.map((r) => (
             <li key={r.name} className="flex flex-col border border-slate-300">
               <p className="t-body flex items-center gap-2 bg-navy px-4 py-2.5 font-bold text-white">
-                <MapPinIcon className="h-5 w-5 text-brand-yellow" />
+                <MapPinIcon className="h-5 w-5 text-white" />
                 {r.name}
               </p>
               <p className="t-body px-4 py-4 text-slate-800">{r.cities}</p>

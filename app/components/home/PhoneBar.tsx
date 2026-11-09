@@ -8,7 +8,7 @@ import { PhoneIcon } from "../Icons";
 
 export default function PhoneBar() {
   return (
-    <div className="fixed inset-x-0 bottom-0 z-30 border-t-2 border-brand-yellow bg-navy">
+    <div className="fixed inset-x-0 bottom-0 z-30 border-t border-white/20 bg-navy">
       <PhoneLink className="mx-auto flex w-full max-w-5xl items-center justify-center gap-3 px-5 py-3 text-white">
         <span className="flex h-10 w-10 shrink-0 items-center justify-center bg-brand-red">
           <PhoneIcon className="h-5 w-5" />

@@ -1,62 +1,77 @@
-// 当店について：職人が直接お電話に出ます（2026-11-09）。
-// 参考サイトの「ネット広告には県外コールセンター経由の業者もあります」の形にならい、
-// 他社と比べた不安（✗）と当店（✓）を並べる。それまでの「他社と比べてください」の比較表をここに移した。
-// 中身は content.ts の COMPARISON_ROWS。項目を増やすのは、オーナーの回答（出張費・見積もりなど）が来てから。
+// 当店について（2026-11-09）。FGロックサービス自身の話から入る：個人で営業していて、
+// 電話を受けた本人が現地に伺い、作業まで行う（オーナーの「個人でやっているので電話に出られないことがある」から）。
+// そのあとに、8月から使っている比較表（当店／一般的な例）を置く。中身は content.ts の COMPARISON_ROWS。
+// 比較の項目を増やすのは、オーナーの回答（出張費・見積もりなど）が来てから。
+// 2026-11-09、参考サイトと同じ言い回し・流れになっていたので書き直した。
 
 import Image from "next/image";
 import { COMPARISON_ROWS, CALLBACK_NOTE } from "../../lib/content";
 import { PHOTOS } from "../../lib/photos";
 import { SHOP_NAME, SHOP_PHONE } from "../../lib/shopInfo";
 import { PhoneLink } from "../PhoneLink";
-import { PhoneIcon, CheckIcon, CrossIcon } from "../Icons";
+import { PhoneIcon, CheckIcon } from "../Icons";
 import SectionTitle from "./SectionTitle";
 
 export default function Direct() {
   return (
-    <section id="direct" className="w-full bg-white">
-      <div className="mx-auto flex w-full max-w-5xl flex-col gap-8 px-5 py-16">
-        <SectionTitle
-          label="WHY DIRECT"
-          title="鍵屋を選ぶときに、こんな不安はありませんか？"
-          lead="ネット広告の鍵屋には、受付だけして、実際の作業は別の業者が行うところもあります。"
-        />
+    <section id="direct" className="w-full bg-mist">
+      <div className="mx-auto flex w-full max-w-5xl flex-col gap-10 px-5 py-16">
+        <SectionTitle title="当店について" />
 
-        <ul className="mx-auto flex w-full max-w-2xl flex-col gap-2">
-          {COMPARISON_ROWS.map((r) => (
-            <li key={r.item} className="t-body flex items-center gap-3 border-l-4 border-brand-red bg-red-50 px-4 py-3 font-bold text-slate-800">
-              <CrossIcon className="h-5 w-5 shrink-0 text-brand-red" />
-              {r.others}
-            </li>
-          ))}
-        </ul>
-
-        <div className="flex flex-col gap-6 border-2 border-blue/40 border-b-8 border-b-navy bg-mist px-5 py-8 md:px-8">
-          <div className="flex flex-col items-center gap-2 text-center">
-            <p className="t-note bg-brand-yellow px-3 py-0.5 font-bold text-navy">＼ 私たちは違います ／</p>
-            <p className="t-heading font-bold text-brand-red">{SHOP_NAME}は、鍵職人が直接お電話に出ます</p>
+        <div className="grid gap-6 md:grid-cols-2 md:items-center">
+          <div className="relative aspect-[4/3] w-full">
+            <Image src={PHOTOS.phone} alt="電話を受ける鍵職人" fill sizes="(max-width: 768px) 100vw, 50vw" className="object-cover" />
           </div>
-          <div className="grid gap-6 md:grid-cols-[2fr_3fr] md:items-center">
-            <div className="relative aspect-[4/3] w-full">
-              <Image src={PHOTOS.phone} alt="電話に出る鍵職人" fill sizes="(max-width: 768px) 100vw, 40vw" className="object-cover" />
+          <div className="flex flex-col gap-4">
+            <p className="t-heading font-bold text-navy">
+              電話に出るのも、伺うのも、
+              <br />
+              同じ鍵職人です。
+            </p>
+            <p className="t-body text-slate-700">
+              {SHOP_NAME}は、群馬で個人で営業している鍵屋です。お電話を受けた本人が、そのまま現地に伺って作業します。
+              お電話の時点で状況をくわしくうかがえるので、伺ってからの話の食い違いが起きにくくなります。
+            </p>
+            <p className="t-note text-slate-500">
+              作業中などで電話に出られないときは、折り返しご連絡します。
+            </p>
+            <div className="flex flex-col items-start gap-1">
+              <PhoneLink className="flex items-center gap-2 bg-brand-red px-6 py-3 font-bold text-white transition hover:brightness-110">
+                <PhoneIcon className="h-6 w-6" />
+                <span className="t-heading">{SHOP_PHONE}</span>
+              </PhoneLink>
+              <p className="t-note text-slate-600">{CALLBACK_NOTE}</p>
             </div>
-            <ul className="flex flex-col gap-3">
-              {COMPARISON_ROWS.map((r) => (
-                <li key={r.item} className="flex flex-col gap-0.5 border border-slate-300 bg-white px-4 py-3">
-                  <span className="t-body flex items-center gap-2 font-bold text-navy">
-                    <CheckIcon className="h-5 w-5 shrink-0 text-blue" />
-                    {r.item}
-                  </span>
-                  <span className="t-body pl-7 text-slate-700">{r.ours}</span>
-                </li>
-              ))}
-            </ul>
           </div>
-          <div className="flex flex-col items-center gap-1">
-            <PhoneLink className="flex items-center gap-2 bg-brand-red px-6 py-3 font-bold text-white transition hover:brightness-110">
-              <PhoneIcon className="h-6 w-6" />
-              <span className="t-heading">{SHOP_PHONE}</span>
-            </PhoneLink>
-            <p className="t-note text-slate-600">{CALLBACK_NOTE}</p>
+        </div>
+
+        {/* 比較表（2026-08〜。他社の名前は出さず、一般的な例と比べる） */}
+        <div className="flex flex-col gap-3">
+          <p className="t-body text-center font-bold text-navy">ほかの業者との違い</p>
+          <div className="w-full overflow-x-auto border border-slate-300 bg-white">
+            <table className="t-body w-full min-w-[520px] border-collapse">
+              <thead>
+                <tr>
+                  <th className="w-1/5 border-b border-slate-300 px-4 py-3 text-left font-bold text-slate-500">項目</th>
+                  <th className="w-2/5 border-b border-navy bg-navy px-4 py-3 text-left font-bold text-white">{SHOP_NAME}</th>
+                  <th className="w-2/5 border-b border-slate-300 px-4 py-3 text-left font-bold text-slate-500">一般的な例</th>
+                </tr>
+              </thead>
+              <tbody>
+                {COMPARISON_ROWS.map((r) => (
+                  <tr key={r.item} className="border-b border-slate-200 last:border-b-0">
+                    <td className="px-4 py-3 text-slate-600">{r.item}</td>
+                    <td className="bg-navy/5 px-4 py-3 font-bold text-navy">
+                      <span className="flex items-start gap-2">
+                        <CheckIcon className="mt-1 h-4 w-4 shrink-0 text-brand-red" />
+                        {r.ours}
+                      </span>
+                    </td>
+                    <td className="px-4 py-3 text-slate-500">{r.others}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
           </div>
         </div>
       </div>

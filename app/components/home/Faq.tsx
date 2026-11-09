@@ -8,7 +8,7 @@ export default function Faq() {
   return (
     <section id="faq" className="w-full bg-white">
       <div className="mx-auto flex w-full max-w-3xl flex-col gap-8 px-5 py-16">
-        <SectionTitle label="FAQ" title="よくあるご質問" />
+        <SectionTitle title="よくあるご質問" />
         <div className="flex flex-col gap-3">
           {FAQ_ITEMS.map((item) => (
             <details key={item.q} className="group border border-slate-300 bg-white">

@@ -1,5 +1,4 @@
-// 鍵の対応サービス（2026-11-09）。赤い全面の帯に、写真付きのカード4枚。
-// カードごとに「こんな時に」の困りごとを並べる（参考サイトの形）。金額は下の料金の欄。
+// 対応している鍵（2026-11-09）。写真付きのカード4枚と、カードごとのお困りごと。金額は下の料金の欄。
 
 import Image from "next/image";
 import { SERVICE_CATEGORIES, AUCTION_SERVICE } from "../../lib/content";
@@ -23,27 +22,24 @@ const CARDS = [
 
 export default function Services() {
   return (
-    <section id="service" className="w-full bg-brand-red">
+    <section id="service" className="w-full bg-mist">
       <div className="mx-auto flex w-full max-w-5xl flex-col gap-8 px-5 py-14">
-        <SectionTitle label="SERVICE" title="鍵の対応サービス" lead="こんな時はご相談ください" onDark />
+        <SectionTitle title="対応している鍵" lead="このようなお困りごとに対応します" />
         <ul className="grid gap-5 sm:grid-cols-2">
-          {CARDS.map((c, i) => (
-            <li key={c.title} className="flex flex-col bg-white shadow-lg">
+          {CARDS.map((c) => (
+            <li key={c.title} className="flex flex-col border border-slate-300 bg-white">
               <div className="relative aspect-[2/1] w-full">
                 <Image src={c.photo} alt={`${c.title}の作業の様子`} fill sizes="(max-width: 640px) 100vw, 50vw" className="object-cover" />
-                <span className="t-note absolute top-0 left-0 bg-navy px-2.5 py-1 font-bold text-white">
-                  CASE {String(i + 1).padStart(2, "0")}
-                </span>
               </div>
               <div className="flex flex-col gap-3 p-5">
-                <div className="border-b-2 border-brand-red pb-2">
+                <div>
                   <h3 className="t-heading font-bold text-navy">{c.title}</h3>
                   <p className="t-note text-slate-500">{c.lead}</p>
                 </div>
-                <ul className="flex flex-col gap-1.5">
+                <ul className="flex flex-col gap-1 border-t border-slate-200 pt-3">
                   {c.troubles.map((t) => (
                     <li key={t} className="t-body flex items-center gap-2 text-slate-800">
-                      <span className="h-2.5 w-2.5 shrink-0 rounded-full bg-brand-red" />
+                      <span className="text-brand-red" aria-hidden="true">・</span>
                       {t}
                     </li>
                   ))}
