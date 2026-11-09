@@ -1,17 +1,10 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
 import { SHOP_NAME } from "./lib/shopInfo";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+// ページ全体の外枠。タブの名前（title）と検索結果の説明文（description）もここで決める。
+// 文字はOS標準のフォントを使う（globals.css）。2026-11-09、使っていなかった
+// Next.jsの初期のWebフォント（Geist）の読み込みを外した。
 
 export const metadata: Metadata = {
   title: `${SHOP_NAME}｜群馬の家と車の鍵のトラブル`,
@@ -21,11 +14,8 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html
-      lang="ja"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
-    >
-      <body className="min-h-full flex flex-col">{children}</body>
+    <html lang="ja" className="h-full antialiased">
+      <body className="flex min-h-full flex-col">{children}</body>
     </html>
   );
 }

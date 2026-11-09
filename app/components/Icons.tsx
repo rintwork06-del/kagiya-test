@@ -1,9 +1,9 @@
-// サンプルページ共通のアイコン集。絵文字だと環境ごとに見た目が変わり
+// サイト共通のアイコン集。絵文字だと環境ごとに見た目が変わり
 // 安っぽくなりやすいため、インラインSVGに統一する（外部ライブラリ不使用、
 // 静的エクスポートと相性が良い）。色は currentColor で親要素から継承する。
 
 import type { CSSProperties, ReactElement } from "react";
-import type { ServiceIconKey } from "../../lib/dummyContent";
+import type { ServiceIconKey } from "../lib/content";
 
 type IconProps = { className?: string; style?: CSSProperties };
 
@@ -39,25 +39,7 @@ export function KeyIcon(props: IconProps) {
   );
 }
 
-export function ShieldIcon(props: IconProps) {
-  return (
-    <svg {...base(props)}>
-      <path d="M12 3 5 6v5c0 4.5 3 8 7 10 4-2 7-5.5 7-10V6l-7-3Z" />
-      <path d="m9 12 2 2 4-4" />
-    </svg>
-  );
-}
-
 // 現在は未使用。営業時間の明示で使う想定のため残している（2026-09-04）。
-export function ClockIcon(props: IconProps) {
-  return (
-    <svg {...base(props)}>
-      <circle cx="12" cy="12" r="9" />
-      <path d="M12 7v5l3 2" />
-    </svg>
-  );
-}
-
 export function CheckIcon(props: IconProps) {
   return (
     <svg {...base(props)}>
@@ -159,7 +141,7 @@ export function DialIcon(props: IconProps) {
   );
 }
 
-// SERVICE_MENUのicon名からSVGを引く共通コンポーネント（3パターンで共用）
+// content.ts の icon の名前から、対応するアイコンを出す部品
 const SERVICE_ICONS: Record<ServiceIconKey, (p: IconProps) => ReactElement> = {
   car: CarIcon,
   carKey: CarKeyIcon,

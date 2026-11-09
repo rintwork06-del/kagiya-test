@@ -1,13 +1,13 @@
 import type { Metadata } from "next";
-import { HouseIcon, CarIcon, DialIcon, ServiceIcon } from "../components/patterns/Icons";
-import { PRICE_NOTE, SERVICE_CATEGORIES } from "../lib/dummyContent";
+import { HouseIcon, CarIcon, DialIcon, ServiceIcon } from "../components/Icons";
+import { PRICE_NOTE, SERVICE_CATEGORIES } from "../lib/content";
 
 // 【料金表の見せ方の比較用ページ（一時的）】
 // 2026-10-28、兄とオーナーに料金表の形を選んでもらうために作った。
 // ①カード型（今のサイトと同じ）／②表型（普通の鍵とディンプルキーを列で並べる）／
 // ③一覧型（作業ごとに条件を書く）の3つを上から並べる。
-// 金額はすべて仮（dummyContent.ts の SERVICE_CATEGORIES と同じ値）。
-// 形が決まったら、選ばれた形を PatternA に入れて、このページは消す。
+// 金額はすべて仮（content.ts の SERVICE_CATEGORIES と同じ値）。
+// 形が決まったら、選ばれた形をトップの料金の欄（components/home/Price.tsx）に入れて、このページは消す。
 
 export const metadata: Metadata = {
   title: "料金表の見せ方の比較（確認用）",
@@ -31,7 +31,7 @@ const TABLE_ROWS_CAR = [
 ] as const;
 
 const TABLE_ROWS_SAFE = [
-  { item: "開錠（家庭用のみ）", a: "8,800円〜（鍵穴）", b: "16,500円〜（ダイヤル・暗証番号）" },
+  { item: "開錠（家庭用のみ）", a: "8,800円〜（鍵穴）", b: "—" },
 ] as const;
 
 // ③一覧型：作業ごとに「何で値段が変わるか」を書く
@@ -65,7 +65,6 @@ const LIST_ROWS = [
     title: "金庫（家庭用のみ）",
     rows: [
       { name: "開錠（鍵穴）", price: "8,800円〜", detail: "業務用・大型の金庫は対応していません" },
-      { name: "開錠（ダイヤル・暗証番号）", price: "16,500円〜", detail: "テンキー式は高くなる場合があります" },
     ],
   },
 ] as const;

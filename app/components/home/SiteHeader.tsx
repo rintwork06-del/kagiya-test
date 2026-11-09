@@ -1,0 +1,72 @@
+// ページの一番上（2026-11-09）。参考サイト（カギ出張24時）の形にならった3段。
+//   1. 細い紺の帯：一言と、店舗情報・対応エリアへのリンク
+//   2. 白い帯：店名（左）と、営業時間の札＋電話のボタン（右）
+//   3. 青いメニューの帯：押すとページ内の各セクションへ飛ぶ。スクロールしても画面の上に残る
+// 店名の左の鍵のアイコンは付けない（2026-11-08、兄「いらんくない」）。
+
+import { SHOP_NAME, SHOP_PHONE } from "../../lib/shopInfo";
+import { PhoneLink } from "../PhoneLink";
+import { PhoneIcon } from "../Icons";
+
+const MENU = [
+  { href: "#service", label: "家の鍵・車の鍵" },
+  { href: "#price", label: "料金" },
+  { href: "#direct", label: "当店について" },
+  { href: "#flow", label: "ご依頼の流れ" },
+  { href: "#area", label: "対応エリア" },
+  { href: "#faq", label: "よくある質問" },
+  { href: "#contact", label: "お問い合わせ" },
+];
+
+export default function SiteHeader() {
+  return (
+    <>
+      {/* スマホでは出さない（下の白い帯にも店名があり、重ねて出さないため。2026-11-08、兄） */}
+      <div className="hidden w-full bg-navy sm:block">
+        <div className="t-note mx-auto flex w-full max-w-5xl items-center justify-between gap-4 px-5 py-1.5 text-white/90">
+          <p className="truncate">群馬で鍵のトラブルなら{SHOP_NAME}｜家と車の鍵に対応</p>
+          <nav className="hidden shrink-0 gap-4 sm:flex">
+            <a href="#shop" className="hover:underline">店舗情報</a>
+            <a href="#area" className="hover:underline">対応エリア</a>
+          </nav>
+        </div>
+      </div>
+
+      <header className="w-full bg-white">
+        <div className="mx-auto flex w-full max-w-5xl items-center justify-between gap-3 px-5 py-3">
+          <div className="flex flex-col">
+            <p className="t-note font-bold text-blue">家と車の鍵のトラブルに対応</p>
+            <p className="t-heading font-bold text-navy">{SHOP_NAME}</p>
+          </div>
+          <div className="flex items-stretch">
+            <p className="t-note hidden flex-col justify-center border-2 border-r-0 border-brand-red bg-brand-yellow px-3 text-center font-bold leading-tight text-navy sm:flex">
+              <span>営業 7:00〜22:00</span>
+              <span>不定休</span>
+            </p>
+            <PhoneLink className="flex items-center gap-2 border-2 border-brand-red bg-brand-red px-3 py-2 font-bold text-white transition hover:brightness-110 sm:px-5">
+              <PhoneIcon className="h-5 w-5" />
+              <span className="t-body hidden sm:inline sm:t-heading">{SHOP_PHONE}</span>
+              <span className="t-note sm:hidden">電話する</span>
+            </PhoneLink>
+          </div>
+        </div>
+      </header>
+
+      {/* メニュー。スマホでは横にスクロールして全部見られる */}
+      <nav className="sticky top-0 z-20 w-full bg-blue">
+        <ul className="mx-auto flex w-full max-w-5xl overflow-x-auto">
+          {MENU.map((m) => (
+            <li key={m.href} className="flex-1 shrink-0 border-r border-white/20 first:border-l">
+              <a
+                href={m.href}
+                className="t-note block whitespace-nowrap px-4 py-3.5 text-center font-bold text-white transition hover:bg-navy sm:t-body"
+              >
+                {m.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </nav>
+    </>
+  );
+}

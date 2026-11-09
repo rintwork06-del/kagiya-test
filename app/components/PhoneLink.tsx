@@ -11,7 +11,7 @@
 // JavaScriptが動かない環境では、ふつうの tel: リンクとしてそのまま発信できる。
 
 import type { MouseEvent, ReactNode } from "react";
-import { SHOP_PHONE, SHOP_PHONE_TEL_HREF } from "../../lib/shopInfo";
+import { SHOP_PHONE, SHOP_PHONE_TEL_HREF } from "../lib/shopInfo";
 import { PhoneIcon } from "./Icons";
 
 const DIALOG_ID = "call-dialog";
@@ -46,11 +46,11 @@ export function CallDialog() {
       onClick={(e) => {
         if (e.target === e.currentTarget) e.currentTarget.close();
       }}
-      className="m-auto w-[calc(100%-3rem)] max-w-sm rounded-xl bg-white p-0 text-slate-800 shadow-2xl backdrop:bg-black/50"
+      className="m-auto w-[calc(100%-3rem)] max-w-sm bg-white p-0 text-slate-800 shadow-2xl backdrop:bg-black/50"
     >
       <div className="flex flex-col items-center gap-4 px-6 py-8 text-center">
         {/* 2026-11-09、りん：※を付けて赤で強調する */}
-        <p className="t-body rounded-lg bg-red-50 px-4 py-3 font-bold text-red-600">
+        <p className="t-body bg-red-50 px-4 py-3 font-bold text-brand-red">
           ※お電話の際は
           <br />
           「ホームページを見た」
@@ -59,7 +59,7 @@ export function CallDialog() {
         </p>
         <a
           href={SHOP_PHONE_TEL_HREF}
-          className="flex w-full items-center justify-center gap-2 rounded-lg bg-orange-500 px-6 py-3.5 font-bold text-white shadow-md shadow-orange-500/30 transition hover:bg-orange-600 active:translate-y-px"
+          className="flex w-full items-center justify-center gap-2 bg-brand-red px-6 py-3.5 font-bold text-white transition hover:brightness-110 active:translate-y-px"
         >
           <PhoneIcon className="h-5 w-5" />
           {SHOP_PHONE}
@@ -67,7 +67,7 @@ export function CallDialog() {
         <form method="dialog" className="w-full">
           <button
             type="submit"
-            className="t-body w-full rounded-lg border border-slate-300 px-6 py-3 text-slate-600 transition hover:bg-slate-50"
+            className="t-body w-full border border-slate-300 px-6 py-3 text-slate-600 transition hover:bg-slate-50"
           >
             閉じる
           </button>

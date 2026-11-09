@@ -9,7 +9,7 @@
 // りん自身が直接書き込むこと。書き方は .env.local.example を参照。
 //
 // 営業時間は個人情報に該当しないため、これまで通りコードに直書きしている
-// （各パターンコンポーネント側を参照）。
+// （components/home/ の各セクションを参照）。
 
 export const SHOP_NAME =
   process.env.NEXT_PUBLIC_SHOP_NAME || "〇〇鍵屋";
@@ -24,7 +24,7 @@ export const SHOP_ADDRESS =
   process.env.NEXT_PUBLIC_SHOP_ADDRESS || "〇〇県〇〇市〇〇 1-2-3";
 
 // 資格情報は「もし存在するなら」の任意項目。未設定時は空文字にし、
-// 各パターン側で空なら表示しない扱いにする。
+// 空なら店舗情報に行を出さない（components/home/ShopInfo.tsx）。
 export const QUALIFICATIONS = process.env.NEXT_PUBLIC_QUALIFICATIONS || "";
 
 // 電話番号のtel:リンク用（数字と+以外を取り除く）。ダミー値でもリンクとして機能する。
