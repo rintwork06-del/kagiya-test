@@ -7,7 +7,7 @@ export default function Flow() {
   return (
     <section id="flow" className="w-full bg-white">
       <div className="mx-auto flex w-full max-w-5xl flex-col gap-8 px-5 py-16">
-        <SectionTitle title="ご依頼の流れ" lead="ご相談から作業、お支払いまでの流れです。" />
+        <SectionTitle title="ご依頼の流れ" lead="ご相談から作業、お支払いまでの流れです" />
         <ol className="grid gap-4 sm:grid-cols-4">
           {FLOW_STEPS.map((step, i) => (
             <li key={step.title} className="flex gap-3 border-t-4 border-navy bg-mist p-4 sm:flex-col">

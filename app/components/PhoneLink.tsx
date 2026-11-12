@@ -12,6 +12,7 @@
 
 import type { MouseEvent, ReactNode } from "react";
 import { SHOP_PHONE, SHOP_PHONE_TEL_HREF } from "../lib/shopInfo";
+import { CALLBACK_NOTE } from "../lib/content";
 import { PhoneIcon } from "./Icons";
 
 const DIALOG_ID = "call-dialog";
@@ -49,9 +50,9 @@ export function CallDialog() {
       className="m-auto w-[calc(100%-3rem)] max-w-sm bg-white p-0 text-slate-800 shadow-2xl backdrop:bg-black/50"
     >
       <div className="flex flex-col items-center gap-4 px-6 py-8 text-center">
-        {/* 2026-11-09、りん：※を付けて赤で強調する */}
+        {/* 2026-11-09、りん：赤で強調する。2026-11-11、※を外した（兄：注釈ではなく、一番伝えたいことなので） */}
         <p className="t-body bg-red-50 px-4 py-3 font-bold text-brand-red">
-          ※お電話の際は
+          お電話の際は
           <br />
           「ホームページを見た」
           <br />
@@ -64,6 +65,8 @@ export function CallDialog() {
           <PhoneIcon className="h-5 w-5" />
           {SHOP_PHONE}
         </a>
+        {/* 2026-11-11、電話に出られないことがある旨は、ここだけに出す（兄） */}
+        <p className="t-note text-left text-slate-600">※{CALLBACK_NOTE}</p>
         <form method="dialog" className="w-full">
           <button
             type="submit"

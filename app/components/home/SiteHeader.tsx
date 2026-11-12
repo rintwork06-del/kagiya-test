@@ -1,7 +1,8 @@
-// ページの一番上（2026-11-09）。3段。
-//   1. 細い紺の帯：一言と、店舗情報・対応エリアへのリンク
-//   2. 白い帯：店名（左）と、営業時間＋電話のボタン（右）
-//   3. 紺のメニューの帯：押すとページ内の各セクションへ飛ぶ。スクロールしても画面の上に残る
+// ページの一番上（2026-11-09）。2段。
+//   1. 白い帯：店名（左）と、営業時間＋電話のボタン（右）
+//   2. 紺のメニューの帯：押すとページ内の各セクションへ飛ぶ。スクロールしても画面の上に残る
+// 2026-11-11、一番上にあった細い帯（一言と、店舗情報・対応エリアへのリンク）を消した
+// （兄：リンクが下のメニューと同じで意味がない）。
 // 店名の左の鍵のアイコンは付けない（2026-11-08、兄「いらんくない」）。
 
 import { SHOP_NAME, SHOP_PHONE } from "../../lib/shopInfo";
@@ -21,26 +22,15 @@ const MENU = [
 export default function SiteHeader() {
   return (
     <>
-      {/* スマホでは出さない（下の白い帯にも店名があり、重ねて出さないため。2026-11-08、兄） */}
-      <div className="hidden w-full border-b border-slate-200 bg-slate-50 sm:block">
-        <div className="t-note mx-auto flex w-full max-w-5xl items-center justify-between gap-4 px-5 py-1.5 text-slate-600">
-          <p className="truncate">群馬県の家と車の鍵の出張サービス</p>
-          <nav className="hidden shrink-0 gap-4 sm:flex">
-            <a href="#shop" className="hover:underline">店舗情報</a>
-            <a href="#area" className="hover:underline">対応エリア</a>
-          </nav>
-        </div>
-      </div>
-
       <header className="w-full bg-white">
         <div className="mx-auto flex w-full max-w-5xl items-center justify-between gap-3 px-5 py-3">
           <div className="flex flex-col">
-            <p className="t-note font-bold text-blue">家と車の鍵のトラブルに対応</p>
+            <p className="t-note font-bold text-blue">群馬県の鍵のトラブルに対応</p>
             <p className="t-heading font-bold text-navy">{SHOP_NAME}</p>
           </div>
           <div className="flex items-center">
             <p className="t-note mr-3 hidden flex-col justify-center text-right leading-tight text-slate-600 sm:flex">
-              <span className="font-bold text-navy">営業 7:00〜22:00</span>
+              <span className="font-bold text-navy">営業時間 7:00〜22:00</span>
               <span>不定休</span>
             </p>
             <PhoneLink className="flex items-center gap-2 bg-brand-red px-3 py-2 font-bold text-white transition hover:brightness-110 sm:px-5">

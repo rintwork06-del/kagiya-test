@@ -16,7 +16,7 @@ export default function Contact() {
       <div className="mx-auto flex w-full max-w-2xl flex-col gap-8 px-5 py-16">
         <SectionTitle
           title="お問い合わせ"
-          lead="フォームは24時間受付しています。ご返信・ご対応は営業時間内です。"
+          lead="フォームは24時間受付しています。ご返信・ご対応は営業時間内です"
         />
         <div className="flex flex-col gap-4 border-t-4 border-navy bg-white px-6 py-8">
           <label className="t-body flex flex-col gap-1.5 font-bold text-navy">

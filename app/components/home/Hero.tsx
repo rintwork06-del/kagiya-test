@@ -4,6 +4,9 @@
 // 載せるのは、兄の言う「お客さんがまず知りたい2つ」＝ 来てくれる地域 と いくらか（2026-11-08）。
 // 金額は料金表（content.ts）の「鍵開け（普通の鍵）」の行から取る。仮の金額（りんの判断で出す）。
 // 2026-11-09、参考サイトに似すぎていた所（丸い写真のアイコン、黄色い枠の電話の帯）を外した。
+// 2026-11-11、キャッチコピーを作り直した。兄：一番に見せたいのは「群馬県」であること。
+// 「作業の前に金額をお伝えします」はアピールとして弱い。文言は、兄との話で出た2案から、りんが選んだ。
+// 対応エリアの文字を金額より大きくした（兄：今は目が行かない）。写真に「イメージです」を添えた。
 
 import Image from "next/image";
 import { SERVICE_CATEGORIES, SERVICE_AREA_NOTE } from "../../lib/content";
@@ -11,6 +14,7 @@ import { PHOTOS } from "../../lib/photos";
 import { SHOP_PHONE } from "../../lib/shopInfo";
 import { PhoneLink } from "../PhoneLink";
 import { PhoneIcon, MapPinIcon } from "../Icons";
+import ImageNote from "./ImageNote";
 
 const UNLOCK_PRICE = SERVICE_CATEGORIES[0].items[0].price;
 
@@ -25,23 +29,26 @@ export default function Hero() {
         sizes="100vw"
         className="object-cover object-right"
       />
+      <ImageNote />
       <div className="absolute inset-0 bg-gradient-to-r from-white via-white/90 to-white/30 md:via-white/80 md:to-transparent" />
 
       <div className="relative mx-auto flex w-full max-w-5xl flex-col gap-5 px-5 pt-10 pb-10 md:pt-14 md:pb-14">
-        <p className="t-body font-bold text-brand-red">群馬県の家と車の鍵のトラブルに</p>
-        <h1 className="t-display font-bold text-navy">
-          鍵のトラブル、
-          <br />
-          <span className="text-brand-red">作業の前に</span>
-          <br className="sm:hidden" />
-          金額をお伝えします
+        <h1 className="flex flex-col gap-3 font-bold text-navy">
+          <span className="t-display">
+            <span className="text-brand-red">群馬県</span> 鍵のトラブル
+          </span>
+          <span className="t-heading">
+            地元の鍵職人が
+            <br />
+            お電話から作業まで対応します
+          </span>
         </h1>
 
         {/* 来てくれる地域 と いくらか */}
         <div className="flex max-w-xl flex-col border border-slate-300 bg-white/95">
           <p className="flex items-start gap-2.5 border-b border-slate-200 px-4 py-3">
-            <MapPinIcon className="mt-1 h-5 w-5 shrink-0 text-navy" />
-            <span className="t-body">
+            <MapPinIcon className="mt-1 h-6 w-6 shrink-0 text-navy" />
+            <span className="t-heading">
               <span className="font-bold text-navy">対応エリア：</span>
               <span className="font-bold underline decoration-brand-red decoration-2 underline-offset-4">
                 群馬県 {SERVICE_AREA_NOTE}
@@ -51,7 +58,7 @@ export default function Hero() {
           <div className="flex flex-wrap items-center justify-between gap-3 px-4 py-3">
             <p className="t-body">
               <span className="font-bold text-navy">鍵開け </span>
-              <span className="t-heading font-bold text-brand-red">{UNLOCK_PRICE}</span>
+              <span className="t-body font-bold text-brand-red">{UNLOCK_PRICE}</span>
               <span className="t-note block text-slate-500">
                 税込の目安です。作業の前に必ず総額をお伝えします
               </span>

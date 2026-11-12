@@ -12,7 +12,7 @@ export default function Area() {
       <div className="mx-auto flex w-full max-w-5xl flex-col gap-8 px-5 py-16">
         <SectionTitle
           title="群馬県の東毛・中毛・西毛に出張します"
-          lead="伺えるかどうかは、お電話でその場でお答えします。"
+          lead="伺えるかどうかは、お電話でその場でお答えします"
         />
         <ul className="grid gap-4 md:grid-cols-3">
           {AREA_REGIONS.map((r) => (

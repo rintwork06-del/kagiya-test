@@ -3,7 +3,7 @@
 // 以前あった店の外観のイラストは外した（外観のある店舗ではないため。2026-11-08、兄）。
 
 import { OWNER_NAME, SHOP_NAME, SHOP_PHONE, SHOP_ADDRESS, QUALIFICATIONS } from "../../lib/shopInfo";
-import { CALLBACK_NOTE, SERVICE_AREA_NOTE } from "../../lib/content";
+import { SERVICE_AREA_NOTE } from "../../lib/content";
 import { PhoneLink } from "../PhoneLink";
 import SectionTitle from "./SectionTitle";
 
@@ -31,7 +31,6 @@ export default function ShopInfo() {
           <dt className="t-body border-b border-slate-300 bg-navy/5 px-4 py-3 font-bold text-navy">電話番号</dt>
           <dd className="t-body border-b border-slate-300 px-4 py-3 text-slate-800">
             <PhoneLink className="font-bold text-blue underline underline-offset-4">{SHOP_PHONE}</PhoneLink>
-            <span className="t-note block text-slate-500">{CALLBACK_NOTE}</span>
           </dd>
         </dl>
       </div>

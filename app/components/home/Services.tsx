@@ -4,6 +4,7 @@ import Image from "next/image";
 import { SERVICE_CATEGORIES, AUCTION_SERVICE } from "../../lib/content";
 import { PHOTOS } from "../../lib/photos";
 import SectionTitle from "./SectionTitle";
+import ImageNote from "./ImageNote";
 
 const CARDS = [
   ...SERVICE_CATEGORIES.map((c) => ({
@@ -30,6 +31,7 @@ export default function Services() {
             <li key={c.title} className="flex flex-col border border-slate-300 bg-white">
               <div className="relative aspect-[2/1] w-full">
                 <Image src={c.photo} alt={`${c.title}の作業の様子`} fill sizes="(max-width: 640px) 100vw, 50vw" className="object-cover" />
+                <ImageNote />
               </div>
               <div className="flex flex-col gap-3 p-5">
                 <div>

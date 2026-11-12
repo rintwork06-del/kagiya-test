@@ -1,9 +1,12 @@
 // フッター（2026-11-09）。紺地。4列：店の情報／サービス／対応エリア／電話。
 // 下に、画面の一番下にいつも出ている電話のバーの分の余白をとる（2026-11-09、白い隙間の修正）。
+// 2026-11-11、下の余白＝電話バーの高さ（スマホ79px・PC65px）＋20px にした。「© 店名」の上の線との間（pt-5＝20px）と、
+// 電話バーとの間を同じにするため（兄：一番下までスクロールしたときの重なりに違和感）。
 
 import { SHOP_NAME, SHOP_PHONE } from "../../lib/shopInfo";
-import { AREA_REGIONS, CALLBACK_NOTE } from "../../lib/content";
+import { AREA_REGIONS } from "../../lib/content";
 import { PhoneLink } from "../PhoneLink";
+import { PhoneIcon } from "../Icons";
 
 const LINKS = [
   { href: "#service", label: "対応している鍵" },
@@ -15,12 +18,12 @@ const LINKS = [
 
 export default function SiteFooter() {
   return (
-    <footer className="w-full bg-navy pb-28 text-white">
+    <footer className="w-full bg-navy pb-[99px] text-white sm:pb-[85px]">
       <div className="mx-auto grid w-full max-w-5xl gap-8 px-5 py-12 sm:grid-cols-2 lg:grid-cols-4">
         <div className="flex flex-col gap-2">
           <p className="t-heading font-bold">{SHOP_NAME}</p>
           <p className="t-note text-white/80">
-            群馬の家と車の鍵のトラブルに対応
+            群馬県の鍵のトラブルに対応
             <br />
             営業時間 7:00〜22:00（不定休）
           </p>
@@ -45,8 +48,11 @@ export default function SiteFooter() {
         </div>
         <div className="flex flex-col gap-2">
           <p className="t-body font-bold text-white">お電話</p>
-          <PhoneLink className="t-heading font-bold hover:underline">☎ {SHOP_PHONE}</PhoneLink>
-          <p className="t-note text-white/80">{CALLBACK_NOTE}</p>
+          {/* 2026-11-11、☎の文字をほかと同じ電話のアイコンにし、番号が途中で折り返さないようにした（タブレットで崩れていた） */}
+          <PhoneLink className="t-body flex items-center gap-2 whitespace-nowrap font-bold hover:underline">
+            <PhoneIcon className="h-5 w-5 shrink-0" />
+            {SHOP_PHONE}
+          </PhoneLink>
         </div>
       </div>
       <p className="t-note border-t border-white/20 px-5 pt-5 text-center text-white/60">

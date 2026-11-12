@@ -5,12 +5,13 @@
 // 2026-11-09、参考サイトと同じ言い回し・流れになっていたので書き直した。
 
 import Image from "next/image";
-import { COMPARISON_ROWS, CALLBACK_NOTE } from "../../lib/content";
+import { COMPARISON_ROWS } from "../../lib/content";
 import { PHOTOS } from "../../lib/photos";
 import { SHOP_NAME, SHOP_PHONE } from "../../lib/shopInfo";
 import { PhoneLink } from "../PhoneLink";
 import { PhoneIcon, CheckIcon } from "../Icons";
 import SectionTitle from "./SectionTitle";
+import ImageNote from "./ImageNote";
 
 export default function Direct() {
   return (
@@ -21,12 +22,13 @@ export default function Direct() {
         <div className="grid gap-6 md:grid-cols-2 md:items-center">
           <div className="relative aspect-[4/3] w-full">
             <Image src={PHOTOS.phone} alt="電話を受ける鍵職人" fill sizes="(max-width: 768px) 100vw, 50vw" className="object-cover" />
+            <ImageNote />
           </div>
           <div className="flex flex-col gap-4">
             <p className="t-heading font-bold text-navy">
-              電話に出るのも、伺うのも、
+              電話に出るのも伺うのも
               <br />
-              同じ鍵職人です。
+              同じ鍵職人です
             </p>
             <p className="t-body text-slate-700">
               {SHOP_NAME}は、群馬で個人で営業している鍵屋です。お電話を受けた本人が、そのまま現地に伺って作業します。
@@ -40,7 +42,6 @@ export default function Direct() {
                 <PhoneIcon className="h-6 w-6" />
                 <span className="t-heading">{SHOP_PHONE}</span>
               </PhoneLink>
-              <p className="t-note text-slate-600">{CALLBACK_NOTE}</p>
             </div>
           </div>
         </div>

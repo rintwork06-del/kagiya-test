@@ -3,7 +3,6 @@
 import Image from "next/image";
 import { PHOTOS } from "../../lib/photos";
 import { SHOP_NAME, SHOP_PHONE } from "../../lib/shopInfo";
-import { CALLBACK_NOTE } from "../../lib/content";
 import { PhoneLink } from "../PhoneLink";
 import { PhoneIcon } from "../Icons";
 
@@ -24,9 +23,9 @@ export default function CallToAction() {
           <span className="t-heading">{SHOP_PHONE}</span>
         </PhoneLink>
         <p className="t-note text-white/80">
-          営業時間 7:00〜22:00（不定休）。{CALLBACK_NOTE}
+          営業時間 7:00〜22:00（不定休）
           <br />
-          お電話の際は「ホームページを見た」とお伝えください。
+          お電話の際は「ホームページを見た」とお伝えください
         </p>
       </div>
     </section>
